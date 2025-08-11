@@ -31,11 +31,3 @@ export const aboutFacts: AboutFact[] = [
     imageUrl: "/images/about/dream-projects.jpg"
   }
 ];
-
-export const profileImages = [
-  "/images/about/profile-1.jpg",
-  "/images/about/profile-2.jpg", 
-  "/images/about/profile-3.jpg",
-  "/images/about/profile-4.jpg",
-  "/images/about/profile-5.jpg"
-];

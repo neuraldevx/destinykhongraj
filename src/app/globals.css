@@ -3,12 +3,12 @@
 
 @theme {
   --breakpoint-xs: 480px;
-  
-  --color-lavender: #f6e8ea;
-  --color-brightpink: #ef626c;
-  --color-licorice: #22181c;
-  --color-jet: #312f2f;
-  --color-tiffany: #84dccf;
+
+  --color-midnight: #071013;
+  --color-coral: #EB5160;
+  --color-rose: #B7999C;
+  --color-aluminum: #AAAAAA;
+  --color-mist: #DFE0E2;
 }
 
 @layer base {
@@ -29,7 +29,7 @@
   }
 
   body {
-    @apply bg-lavender text-licorice antialiased;
+    @apply bg-midnight text-mist antialiased;
     font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'pnum' 1, 'tnum' 0, 'onum' 1, 'lnum' 0, 'dlig' 0;
   }
 
@@ -64,7 +64,7 @@
   /* Improved focus states */
   button:focus-visible,
   a:focus-visible {
-    @apply outline-2 outline-offset-2 outline-tiffany;
+    @apply outline-2 outline-offset-2 outline-coral;
   }
 
   /* Custom scrollbar */
@@ -73,15 +73,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-licorice;
+    @apply bg-midnight;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-tiffany rounded-full;
+    @apply bg-coral rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-brightpink;
+    @apply bg-rose;
   }
 
   /* Smooth animations */
@@ -95,19 +95,19 @@
 }
 
 #card-0 .card-inner {
-  @apply bg-brightpink;
+  @apply bg-coral;
 }
 
 #card-1 .card-inner {
-  @apply bg-tiffany;
+  @apply bg-rose;
 }
 
 #card-2 .card-inner {
-  @apply bg-jet;
+  @apply bg-aluminum;
 }
 
 #card-3 .card-inner {
-  @apply bg-licorice;
+  @apply bg-midnight;
 }
 
 @keyframes blink {

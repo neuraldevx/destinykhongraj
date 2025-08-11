@@ -243,7 +243,7 @@ export default function Hero() {
   }, { scope: heroRef, dependencies: [width] });
 
   return (
-    <section ref={heroRef} className="pt-4 lg:pb-24 h-screen relative bg-gradient-to-br from-jet via-licorice to-jet">
+    <section ref={heroRef} className="pt-4 lg:pb-24 h-screen relative bg-gradient-to-br from-midnight via-rose to-midnight">
       <div className="px-4">
         <h1 className="hidden">Destiny Khongraj</h1>
 
@@ -255,7 +255,7 @@ export default function Hero() {
             <div className="w-full pointer-events-none mb-6">
               <h2 
                 ref={destinyRef}
-                className="text-6xl md:text-8xl lg:text-9xl font-bold text-lavender cursor-default"
+                className="text-6xl md:text-8xl lg:text-9xl font-bold text-mist cursor-default"
                 style={{ perspective: "1000px" }}
               >
                 DESTINY
@@ -267,7 +267,7 @@ export default function Hero() {
             <div className="w-full pointer-events-none mb-6">
               <h2 
                 ref={khongrajRef}
-                className="text-6xl md:text-8xl lg:text-9xl font-bold text-lavender cursor-default"
+                className="text-6xl md:text-8xl lg:text-9xl font-bold text-mist cursor-default"
                 style={{ perspective: "1000px" }}
               >
                 KHONGRAJ
@@ -281,7 +281,7 @@ export default function Hero() {
             <div className="overflow-visible">
               <p
                 ref={taglineRef}
-                className="text-[clamp(18px,1.4vw,28px)] font-semibold leading-[1.2] text-center md:text-left text-brightpink"
+                className="text-[clamp(18px,1.4vw,28px)] font-semibold leading-[1.2] text-center md:text-left text-coral"
                 style={{ perspective: "800px" }}
               >
                 Visual Architect & Digital Dreamer
@@ -292,7 +292,7 @@ export default function Hero() {
             <div className="overflow-visible">
               <p
                 ref={descriptionRef}
-                className={`${playfair_display.className} text-[clamp(18px,1.4vw,28px)] font-normal -mt-1 leading-[1.2] text-center md:text-left text-tiffany`}
+                className={`${playfair_display.className} text-[clamp(18px,1.4vw,28px)] font-normal -mt-1 leading-[1.2] text-center md:text-left text-rose`}
               >
                 Crafting stories that resonate across universes
               </p>

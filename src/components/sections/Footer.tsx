@@ -109,25 +109,25 @@ export default function Footer() {
   }, { scope: footerRef });
 
   return (
-    <section ref={footerRef} id="footer" className="p-4 bg-gradient-to-t from-licorice via-jet to-lavender-800">
-      <footer className="bg-jet/20 backdrop-blur-sm rounded-xl p-8 min-h-[600px] flex flex-col justify-between border border-tiffany/20">
+    <section ref={footerRef} id="footer" className="p-4 bg-gradient-to-t from-midnight via-rose to-mist">
+      <footer className="bg-aluminum/20 backdrop-blur-sm rounded-xl p-8 min-h-[600px] flex flex-col justify-between border border-rose/20">
         <div className="flex justify-between items-start">
-          <p className="location-time font-semibold text-lg text-lavender">
+          <p className="location-time font-semibold text-lg text-mist">
             Los Angeles, CA
           </p>
-          <div className="location-time text-brightpink font-semibold text-lg">
+          <div className="location-time text-coral font-semibold text-lg">
             {currentTime}
           </div>
         </div>
 
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h2 className="footer-title text-5xl md:text-7xl font-semibold text-lavender mb-8 leading-tight">
+            <h2 className="footer-title text-5xl md:text-7xl font-semibold text-mist mb-8 leading-tight">
               Let&apos;s work{" "}
-              <span className="text-tiffany">together!</span>
+              <span className="text-rose">together!</span>
             </h2>
-            
-            <button className="footer-button bg-gradient-to-r from-brightpink to-tiffany hover:from-brightpink-400 hover:to-tiffany-300 text-licorice px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+
+            <button className="footer-button bg-gradient-to-r from-coral to-rose hover:from-coral/80 hover:to-rose/80 text-midnight px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
               Get in Touch
             </button>
           </div>
@@ -135,23 +135,23 @@ export default function Footer() {
 
         <div className="grid grid-cols-3 gap-4 text-center md:text-left">
           <div className="space-y-2">
-            <a href="#" className="social-link block font-semibold text-lavender hover:text-brightpink transition-colors">
+            <a href="#" className="social-link block font-semibold text-mist hover:text-coral transition-colors">
               Instagram
             </a>
-            <a href="#" className="social-link block font-semibold text-lavender hover:text-brightpink transition-colors">
+            <a href="#" className="social-link block font-semibold text-mist hover:text-coral transition-colors">
               YouTube
             </a>
           </div>
           
           <div className="flex justify-center">
-            <p className="font-semibold text-tiffany">©2025</p>
+            <p className="font-semibold text-rose">©2025</p>
           </div>
           
           <div className="space-y-2 text-right">
-            <a href="#" className="social-link block font-semibold text-lavender hover:text-brightpink transition-colors">
+            <a href="#" className="social-link block font-semibold text-mist hover:text-coral transition-colors">
               LinkedIn
             </a>
-            <a href="#" className="social-link block font-semibold text-lavender hover:text-brightpink transition-colors">
+            <a href="#" className="social-link block font-semibold text-mist hover:text-coral transition-colors">
               TikTok
             </a>
           </div>
