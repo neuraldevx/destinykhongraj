@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Observer } from "gsap/Observer";
+import { Observer } from "gsap/dist/Observer";
 import useWindowSize from "@/hooks/useWindowSize";
 
 gsap.registerPlugin(useGSAP, Observer);

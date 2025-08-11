@@ -46,12 +46,12 @@ describe('Hero Component', () => {
     expect(screen.getByText('KHONGRAJ')).toBeInTheDocument()
   })
 
-  it('renders content description text', () => {
+  it('renders tagline and description text', () => {
     render(<Hero />)
-    
-    // Check if description texts are rendered
-    expect(screen.getByText('Content Creation & Digital Storytelling')).toBeInTheDocument()
-    expect(screen.getByText('Scaling brands reach and impact')).toBeInTheDocument()
+
+    // Check if tagline and description texts are rendered
+    expect(screen.getByText('Visual Architect & Digital Dreamer')).toBeInTheDocument()
+    expect(screen.getByText('Crafting stories that resonate across universes')).toBeInTheDocument()
   })
 
   it('has correct background styling', () => {
@@ -59,7 +59,7 @@ describe('Hero Component', () => {
     
     // Find the section element by getting the closest section to our heading
     const section = screen.getByText('DESTINY').closest('section')
-    expect(section).toHaveClass('bg-gradient-to-br', 'from-white', 'via-gray-50', 'to-gray-100')
+    expect(section).toHaveClass('bg-gradient-to-br', 'from-midnight', 'via-rose', 'to-midnight')
   })
 
   it('renders with full screen height', () => {

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Flip } from "gsap/Flip";
+import { Flip } from "gsap/dist/Flip";
 import SplitType from "split-type";
 import { playfair_display } from "@/fonts";
 import Slider from "@/components/layout/Slider";
