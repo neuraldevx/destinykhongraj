@@ -1,26 +1,65 @@
-export const services = [
+type Service = {
+  title: string;
+  description: string;
+  keywords: string[];
+  imageUrl: string;
+};
+
+export const services: Service[] = [
   {
-    title: "Content Creation",
-    description: "Crafting compelling visual narratives that capture attention and drive engagement across all platforms.",
-    keywords: ["Photography", "Videography", "Visual Storytelling", "Brand Content"],
-    imageUrl: "/images/services/content-creation.jpg"
+    title: "UGC",
+    description:
+      "I leverage authentic content created by users to build trust and engagement with your audience, enhancing brand credibility and reach.",
+    keywords: [
+      "Authenticity",
+      "Engagement",
+      "Trust",
+      "Community Building",
+      "Brand Advocacy",
+      "Organic Reach",
+    ],
+    imageUrl: "/images/services/image-1.jpg",
   },
   {
-    title: "Brand Strategy",
-    description: "Developing comprehensive strategies that align with your brand identity and resonate with your target audience.",
-    keywords: ["Brand Development", "Strategy Planning", "Market Research", "Brand Positioning"],
-    imageUrl: "/images/services/brand-strategy.jpg"
+    title: "Photography",
+    description:
+      "I capture high-quality images that tell your brand's story, evoke emotions, and create a lasting impression on your audience.",
+    keywords: [
+      "High-Quality Images",
+      "Brand Storytelling",
+      "Visual Appeal",
+      "Emotional Connection",
+      "Professional Photography",
+      "Creative Direction",
+    ],
+    imageUrl: "/images/services/image-2.jpg",
   },
   {
-    title: "Social Media",
-    description: "Creating engaging content and managing social presence to build authentic connections with your audience.",
-    keywords: ["Content Management", "Community Building", "Engagement Strategy", "Platform Optimization"],
-    imageUrl: "/images/services/social-media.jpg"
+    title: "Short-Form Video",
+    description:
+      "I produce engaging short-form videos that capture attention quickly, convey your message effectively, and drive social media engagement.",
+    keywords: [
+      "Engaging Content",
+      "Quick Attention",
+      "Effective Messaging",
+      "Social Media Engagement",
+      "Video Production",
+      "Creative Storytelling",
+    ],
+    imageUrl: "/images/services/image-3.jpg",
   },
   {
-    title: "Digital Marketing",
-    description: "Implementing data-driven marketing campaigns that deliver measurable results and maximize ROI.",
-    keywords: ["Campaign Strategy", "Analytics", "Performance Marketing", "Audience Targeting"],
-    imageUrl: "/images/services/digital-marketing.jpg"
-  }
+    title: "Content Strategy",
+    description:
+      "I create social strategies to maximize reach, engagement, and conversions through data-driven insights and creative execution.",
+    keywords: [
+      "Research & Insights",
+      "Purpose, Mission, Vision",
+      "Value Propositions",
+      "Brand Voice",
+      "Verbal Identity",
+      "Personality Traits",
+    ],
+    imageUrl: "/images/services/image-4.jpg",
+  },
 ];

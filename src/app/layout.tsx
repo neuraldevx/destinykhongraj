@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { metadata } from "@/metadata";
 import { inter } from "@/fonts";
 import DocumentTitleChanger from "@/components/layout/DocumentTitleChanger";
-import ContactModal from "@/components/modal/ContactModal";
+// import ContactModal from "@/components/modal/ContactModal";
 import "./globals.css";
 import { FooterProvider } from "@/contexts/footer-context";
 
@@ -24,7 +24,7 @@ export default function RootLayout({
             <DocumentTitleChanger />
 
             {children}
-            <ContactModal />
+            {/* <ContactModal /> */}
             <Analytics />
           </body>
         </ReactLenis>

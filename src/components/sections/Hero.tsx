@@ -1,11 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Flip } from "gsap/Flip";
 import SplitType from "split-type";
-import Image from "next/image";
 import { playfair_display } from "@/fonts";
 import Slider from "@/components/layout/Slider";
 import useWindowSize from "@/hooks/useWindowSize";
@@ -36,7 +35,6 @@ export default function Hero() {
   const khongrajRef = useRef<HTMLHeadingElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const starRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (!heroRef.current || !titleContainerRef.current) return;
@@ -108,95 +106,89 @@ export default function Hero() {
       });
     }
 
-    if (starRef.current) {
-      gsap.set(starRef.current, {
-        scale: 0,
-        rotation: 180,
-        opacity: 0,
-      });
-    }
 
-    // Create master timeline with spectacular effects
-    const masterTL = gsap.timeline();
+    // Create master timeline with controlled sequencing
+    const masterTL = gsap.timeline({
+      onComplete: () => {
+        // Enable scroll after animation completes
+        document.body.style.overflow = 'auto';
+        // Dispatch custom event to signal animation completion
+        window.dispatchEvent(new CustomEvent('heroAnimationComplete'));
+      }
+    });
 
-    // Phase 1: Flashy character flip-in for "DESTINY"
+    // Disable scroll during animation
+    document.body.style.overflow = 'hidden';
+
+    // Phase 1: Character flip-in for "DESTINY"
     masterTL.to(destinyChars, {
       rotationY: 0,
       opacity: 1,
-      duration: 0.8,
+      duration: 0.6,
       stagger: {
-        amount: 0.6,
-        from: "random",
-        ease: "back.out(2)",
+        amount: 0.4,
+        from: "start",
+        ease: "power2.out",
       },
-      ease: "back.out(1.4)",
-      delay: 0.3,
+      ease: "back.out(1.2)",
+      delay: 0.5,
     })
 
-    // Phase 2: Different flip animation for "KHONGRAJ" 
+    // Phase 2: Flip animation for "KHONGRAJ" 
     .to(khongrajChars, {
       rotationX: 0,
       z: 0,
       opacity: 1,
-      duration: 0.9,
+      duration: 0.6,
       stagger: {
-        amount: 0.8,
-        from: "end",
+        amount: 0.4,
+        from: "start",
         ease: "power2.out",
       },
-      ease: "elastic.out(1, 0.6)",
-    }, "-=0.4")
+      ease: "back.out(1.2)",
+    }, "-=0.2")
 
-    // Phase 3: Container scaling with elastic bounce
+    // Phase 3: Container scaling - smoother transition
     .to(titleContainerRef.current, {
       scale: 1,
-      duration: 1.4,
-      ease: "elastic.out(1.2, 0.4)",
-    }, "-=0.5")
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.3")
 
-    // Phase 4: Container positioning with overshoot
+    // Phase 4: Container positioning - controlled movement
     .to(titleContainerRef.current, {
       top: "0px",
       y: "16px",
-      duration: 1.2,
-      ease: "back.out(1.7)",
-    }, "-=0.7")
+      duration: 0.6,
+      ease: "power2.out",
+    }, "-=0.4")
 
-    // Phase 5: Tagline words with perspective flip
+    // Phase 5: Tagline words - clean entrance
     .to(taglineWords, {
       y: 0,
       rotationX: 0,
       opacity: 1,
-      duration: 0.8,
+      duration: 0.5,
       stagger: {
-        amount: 0.4,
+        amount: 0.2,
         ease: "power2.out",
       },
-      ease: "back.out(2)",
-    }, "-=0.8")
+      ease: "power2.out",
+    }, "-=0.3")
 
-    // Phase 6: Star with spin and scale
-    .to(starRef.current, {
-      scale: 1,
-      rotation: 0,
-      opacity: 1,
-      duration: 1,
-      ease: "elastic.out(1, 0.5)",
-    }, "-=0.6")
-
-    // Phase 7: Description with elastic bounce
+    // Phase 6: Description - final reveal
     .to(descriptionWords, {
       scale: 1,
       rotation: 0,
       opacity: 1,
-      duration: 0.7,
+      duration: 0.5,
       stagger: {
-        amount: 0.5,
-        from: "center",
-        ease: "back.out(1.7)",
+        amount: 0.2,
+        from: "start",
+        ease: "power2.out",
       },
-      ease: "elastic.out(1, 0.8)",
-    }, "-=0.7");
+      ease: "power2.out",
+    }, "-=0.2");
 
     // Add hover effects for interactivity
     const addHoverEffects = () => {
@@ -251,7 +243,7 @@ export default function Hero() {
   }, { scope: heroRef, dependencies: [width] });
 
   return (
-    <section ref={heroRef} className="pt-4 lg:pb-24 h-screen relative">
+    <section ref={heroRef} className="pt-4 lg:pb-24 h-screen relative bg-gradient-to-br from-jet via-licorice to-jet">
       <div className="px-4">
         <h1 className="hidden">Destiny Khongraj</h1>
 
@@ -263,7 +255,7 @@ export default function Hero() {
             <div className="w-full pointer-events-none mb-6">
               <h2 
                 ref={destinyRef}
-                className="text-6xl md:text-8xl lg:text-9xl font-bold text-[#F5F0EC] cursor-default"
+                className="text-6xl md:text-8xl lg:text-9xl font-bold text-lavender cursor-default"
                 style={{ perspective: "1000px" }}
               >
                 DESTINY
@@ -275,7 +267,7 @@ export default function Hero() {
             <div className="w-full pointer-events-none mb-6">
               <h2 
                 ref={khongrajRef}
-                className="text-6xl md:text-8xl lg:text-9xl font-bold text-[#F5F0EC] cursor-default"
+                className="text-6xl md:text-8xl lg:text-9xl font-bold text-lavender cursor-default"
                 style={{ perspective: "1000px" }}
               >
                 KHONGRAJ
@@ -289,34 +281,20 @@ export default function Hero() {
             <div className="overflow-visible">
               <p
                 ref={taglineRef}
-                className="text-[clamp(18px,1.4vw,28px)] font-semibold leading-[1.2] text-center md:text-left text-[#D6A4A4]"
+                className="text-[clamp(18px,1.4vw,28px)] font-semibold leading-[1.2] text-center md:text-left text-brightpink"
                 style={{ perspective: "800px" }}
               >
-                Content Creation & Digital Storytelling
+                Visual Architect & Digital Dreamer
               </p>
             </div>
 
-            <div className="hidden md:block overflow-visible absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-              <div
-                ref={starRef}
-                className="w-[clamp(28px,2vw,48px)] h-[clamp(28px,2vw,48px)] relative group cursor-pointer"
-              >
-                <Image
-                  src="/images/icons/star.svg"
-                  alt="star"
-                  fill
-                  sizes="(max-width: 768px) 28px, 48px"
-                  className="group-hover:rotate-[360deg] transition-transform duration-500 ease-in-out"
-                />
-              </div>
-            </div>
 
             <div className="overflow-visible">
               <p
                 ref={descriptionRef}
-                className={`${playfair_display.className} text-[clamp(18px,1.4vw,28px)] font-normal -mt-1 leading-[1.2] text-center md:text-left text-[#BCA5A5]`}
+                className={`${playfair_display.className} text-[clamp(18px,1.4vw,28px)] font-normal -mt-1 leading-[1.2] text-center md:text-left text-tiffany`}
               >
-                Scaling brands reach and impact
+                Crafting stories that resonate across universes
               </p>
             </div>
           </div>

@@ -1,75 +1,216 @@
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/services";
+import SplitText from "split-type";
+
+//Register GSAP plugins
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Services() {
-  return (
-    // Enhanced background with sophisticated gradient
-    <section id="services" className="px-4 py-24 bg-gradient-to-b from-white via-gray-50 to-gray-100 relative">
-      {/* Subtle geometric pattern overlay */}
-      <div className="absolute inset-0 opacity-10 bg-[linear-gradient(45deg,transparent_40%,rgba(107,114,128,0.1)_50%,transparent_60%)]"></div>
+  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const headingsRef = useRef<(HTMLHeadingElement | null)[]>([]);
+  const splitHeadingsRef = useRef<SplitText[]>([]);
+
+  useGSAP(() => {
+    const sections = sectionsRef.current;
+    const headings = headingsRef.current;
+
+    //Initialize SplitText for headings
+    splitHeadingsRef.current = headings.map(heading => 
+      heading ? new SplitText(heading, { 
+        type: "chars,words,lines"
+      }) : null
+    ).filter(Boolean) as SplitText[];
+
+    //Create timeline for each section
+    sections.forEach((section, index) => {
+      if (!section) return;
+
+      const chars = splitHeadingsRef.current[index]?.chars || [];
+      const backgroundEl = section.querySelector('.bg') as HTMLElement;
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Enhanced section title with better typography */}
-        <h2 className="text-4xl md:text-6xl font-bold mb-16 text-maroon-800 font-inter tracking-tight">
-          Services
-        </h2>
+      //Set initial states
+      gsap.set(chars, { y: 100, opacity: 0 });
+      gsap.set(backgroundEl, { scale: 1.2 });
 
-        <div className="space-y-8">
-          {services.map((service, index) => (
-            <ServiceCard key={index} {...service} index={index + 1} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+      //Create timeline for this section
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: 1,
+          onEnter: () => {
+            //Animate text in
+            gsap.to(chars, {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power2.out",
+              stagger: {
+                each: 0.02,
+                from: "random"
+              }
+            });
+          },
+          onLeave: () => {
+            //Animate text out
+            gsap.to(chars, {
+              y: -100,
+              opacity: 0,
+              duration: 0.5,
+              ease: "power2.in",
+              stagger: {
+                each: 0.01,
+                from: "random"
+              }
+            });
+          },
+          onEnterBack: () => {
+            //Animate text back in
+            gsap.to(chars, {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power2.out",
+              stagger: {
+                each: 0.02,
+                from: "random"
+              }
+            });
+          },
+          onLeaveBack: () => {
+            //Animate text back out
+            gsap.to(chars, {
+              y: 100,
+              opacity: 0,
+              duration: 0.5,
+              ease: "power2.in",
+              stagger: {
+                each: 0.01,
+                from: "random"
+              }
+            });
+          }
+      });
 
-type ServiceCardProps = {
-  title: string;
-  description: string;
-  keywords: string[];
-  imageUrl: string;
-  index: number;
-};
+      //Background parallax effect
+      gsap.to(backgroundEl, {
+        scale: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
+    });
 
-function ServiceCard({ title, description, keywords, imageUrl, index }: ServiceCardProps) {
+  }, { scope: containerRef });
+
   return (
-    // Enhanced card with better shadows, backdrop, and hover effects
-    <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 hover:border-maroon-200">
-      <div className="flex flex-col lg:flex-row justify-between mb-8">
-        <h3 className="text-4xl md:text-6xl font-semibold text-gray-900 leading-tight mb-4 lg:mb-0">
-          {title}
-        </h3>
-        <span className="text-2xl md:text-4xl font-semibold text-gray-400">
-          (0{index})
-        </span>
+    <section ref={containerRef} className="services-container py-16 lg:py-24">
+      <style jsx>{`
+        .services-container {
+          background: #0a0a0a;
+          color: white;
+        }
+        .service-section {
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+        }
+        .service-section .bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+        }
+        .service-section .bg::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.3) 50%,
+            rgba(0, 0, 0, 0.7) 100%
+          );
+        }
+        .service-section h2 {
+          position: relative;
+          z-index: 10;
+          font-size: clamp(3rem, 12vw, 8rem);
+          font-weight: 700;
+          text-align: center;
+          line-height: 0.9;
+          letter-spacing: -0.02em;
+          text-transform: uppercase;
+        }
+        .service-section .service-description {
+          position: absolute;
+          bottom: 10%;
+          left: 50%;
+          transform: translateX(-50%);
+          max-width: 600px;
+          text-align: center;
+          font-size: 1.2rem;
+          line-height: 1.6;
+          z-index: 10;
+        }
+      `}</style>
+      
+      {/* Section Header */}
+      <div className="text-center mb-16 px-4">
+        <h2 className="text-5xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
+          What We
+          <span className="block bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+            Create Together
+          </span>
+        </h2>
+        <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          Where vision meets execution in perfect harmony
+        </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-2/3">
-          <p className="text-xl md:text-2xl font-medium text-gray-700 mb-6 leading-relaxed">
-            {description}
-          </p>
-
-          <div className="flex flex-wrap gap-3">
-            {keywords.map((keyword, keyIndex) => (
-              <span
-                key={keyIndex}
-                className="px-4 py-2 bg-gray-200 text-maroon-800 rounded-full text-sm font-medium"
-              >
-                {keyword}
-              </span>
-            ))}
+      {services.map((service, index) => (
+        <div
+          key={index}
+          ref={(el) => (sectionsRef.current[index] = el)}
+          className="service-section"
+        >
+          <div
+            className="bg"
+            style={{
+              backgroundImage: `url(${service.imageUrl})`
+            }}
+          />
+          <h2
+            ref={(el) => (headingsRef.current[index] = el)}
+            className="service-title"
+          >
+            {service.title}
+          </h2>
+          <div className="service-description">
+            <p>{service.description}</p>
           </div>
         </div>
-
-        <div className="lg:w-1/3">
-          <div className="bg-gradient-to-br from-maroon-700 to-maroon-900 rounded-xl h-64 lg:h-80 flex items-center justify-center">
-            <p className="text-white font-semibold text-lg">
-              {imageUrl ? "Image" : "Service Image"}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+      ))}
+    </section>
   );
 }
