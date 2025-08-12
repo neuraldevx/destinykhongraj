@@ -1,11 +1,16 @@
 :root {
-  --color-bg: #071013;
-  --color-primary: #EB5160;
-  --color-accent: #B7999C;
-  --color-neutral: #AAAAAA;
-  --color-light: #DFE0E2;
-  --color-text-primary: #DFE0E2;
-  --color-text-secondary: #AAAAAA;
+  /* New sophisticated color palette */
+  --color-bg: #0F1419;
+  --color-primary: #4299E1;
+  --color-accent: #4299E1;
+  --color-neutral: #718096;
+  --color-light: #E2E8F0;
+  --color-text-primary: #E2E8F0;
+  --color-text-secondary: #718096;
+  
+  /* Additional semantic colors */
+  --color-surface: #2D3748;
+  --color-border: #4A5568;
   
   --radius-sm: 8px;
   --radius-md: 12px;

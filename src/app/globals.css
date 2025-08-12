@@ -1,14 +1,35 @@
 @import "tailwindcss";
-@import "../styles/tokens.css";
+
+@font-face {
+  font-family: 'Gambarino-Regular';
+  src: url('/fonts/fonts/Gambarino-Regular.woff2') format('woff2'),
+       url('/fonts/fonts/Gambarino-Regular.woff') format('woff'),
+       url('/fonts/fonts/Gambarino-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
 
 @theme {
   --breakpoint-xs: 480px;
 
-  --color-midnight: #071013;
-  --color-coral: #EB5160;
-  --color-rose: #B7999C;
-  --color-aluminum: #AAAAAA;
-  --color-mist: #DFE0E2;
+  /* New sophisticated color palette */
+  --color-charcoal: #0F1419;
+  --color-slate: #2D3748;
+  --color-stone: #4A5568;
+  --color-silver: #718096;
+  --color-pearl: #E2E8F0;
+  --color-accent: #4299E1;
+  
+  /* Legacy color mappings for gradual transition */
+  --color-midnight: #0F1419;
+  --color-coral: #4299E1;
+  --color-rose: #718096;
+  --color-aluminum: #718096;
+  --color-mist: #E2E8F0;
+
+  --font-family-gambarino: 'Gambarino-Regular', 'Arial', sans-serif;
+  --font-gambarino: 'Gambarino-Regular', 'Arial', sans-serif;
 }
 
 @layer base {
@@ -23,13 +44,14 @@
   }
 
   html {
-    @apply font-sans scroll-smooth;
+    font-family: var(--font-gambarino);
+    @apply scroll-smooth;
     font-size: 16px;
     line-height: 1.5;
   }
 
   body {
-    @apply bg-midnight text-mist antialiased;
+    font-family: var(--font-gambarino);
     font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'pnum' 1, 'tnum' 0, 'onum' 1, 'lnum' 0, 'dlig' 0;
   }
 
@@ -64,24 +86,48 @@
   /* Improved focus states */
   button:focus-visible,
   a:focus-visible {
-    @apply outline-2 outline-offset-2 outline-coral;
+    @apply outline-2 outline-offset-2 outline-accent;
   }
 
-  /* Custom scrollbar */
+  /* Custom scrollbar - updated with new colors */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-midnight;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-coral rounded-full;
+    background: rgba(113, 128, 150, 0.3);
+    border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-rose;
+    background: rgba(113, 128, 150, 0.5);
+  }
+
+  /* Enhanced visual elements */
+  .gradient-border {
+    background: linear-gradient(135deg, rgba(66, 153, 225, 0.1), rgba(113, 128, 150, 0.1));
+    border: 1px solid rgba(113, 128, 150, 0.2);
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    background: rgba(45, 55, 72, 0.8);
+    border: 1px solid rgba(113, 128, 150, 0.1);
+  }
+
+  .subtle-shadow {
+    box-shadow: 0 4px 32px rgba(15, 20, 25, 0.3);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #E2E8F0, #718096);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   /* Smooth animations */
@@ -92,22 +138,60 @@
   .animate-in {
     animation-fill-mode: both;
   }
+
+  /* Component-specific improvements */
+  .btn-primary {
+    @apply bg-accent text-charcoal px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply hover:bg-accent/90 hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-slate text-pearl px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply hover:bg-stone border border-stone;
+  }
+
+  .card-modern {
+    @apply bg-slate/50 backdrop-blur-md border border-stone/30 rounded-xl p-6;
+    @apply shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  .section-modern {
+    @apply py-20 lg:py-32 px-4 lg:px-8;
+  }
+
+  /* Typography improvements */
+  .heading-primary {
+    @apply text-4xl md:text-6xl lg:text-7xl font-light text-pearl leading-tight;
+  }
+
+  .heading-secondary {
+    @apply text-2xl md:text-3xl lg:text-4xl font-light text-pearl;
+  }
+
+  .text-body {
+    @apply text-base md:text-lg text-silver leading-relaxed;
+  }
+
+  .text-accent {
+    @apply text-accent font-medium;
+  }
+
 }
 
 #card-0 .card-inner {
-  @apply bg-coral;
+  @apply bg-accent;
 }
 
 #card-1 .card-inner {
-  @apply bg-rose;
+  @apply bg-slate;
 }
 
 #card-2 .card-inner {
-  @apply bg-aluminum;
+  @apply bg-stone;
 }
 
 #card-3 .card-inner {
-  @apply bg-midnight;
+  @apply bg-silver;
 }
 
 @keyframes blink {
@@ -156,3 +240,4 @@
 .card-inner {
   will-change: transform;
 }
+

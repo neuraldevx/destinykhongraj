@@ -24,8 +24,8 @@ export default function Copy({ children, className = "", delay = 0 }: CopyProps)
     
     // Split text into lines
     const splitText = new SplitText(text, { 
-      type: "lines",
-      linesClass: "copy-line"
+      types: "lines",
+      lineClass: "copy-line"
     });
 
     // Set initial state - hidden with mask

@@ -15,15 +15,80 @@ export default function Services() {
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const headingsRef = useRef<(HTMLHeadingElement | null)[]>([]);
   const splitHeadingsRef = useRef<SplitText[]>([]);
+  const headerRef = useRef<HTMLHeadingElement>(null);
+  const subHeaderRef = useRef<HTMLParagraphElement>(null);
 
   useGSAP(() => {
     const sections = sectionsRef.current;
     const headings = headingsRef.current;
 
+    // Initialize SplitText for section header
+    if (headerRef.current) {
+      const headerSplit = new SplitText(headerRef.current, {
+        types: "lines,words",
+        lineClass: "header-line",
+        wordClass: "header-word"
+      });
+
+      // Set initial state for header animation
+      gsap.set(headerSplit.words, { 
+        opacity: 0, 
+        y: 100,
+        rotationX: -90 
+      });
+
+      // Animate header text in
+      ScrollTrigger.create({
+        trigger: headerRef.current,
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to(headerSplit.words, {
+            opacity: 1,
+            y: 0,
+            rotationX: 0,
+            duration: 1,
+            ease: "power3.out",
+            stagger: {
+              amount: 0.8,
+              from: "start"
+            }
+          });
+        }
+      });
+    }
+
+    // Initialize SplitText for subheader
+    if (subHeaderRef.current) {
+      const subHeaderSplit = new SplitText(subHeaderRef.current, {
+        types: "words",
+        wordClass: "subheader-word"
+      });
+
+      gsap.set(subHeaderSplit.words, { 
+        opacity: 0, 
+        y: 30 
+      });
+
+      ScrollTrigger.create({
+        trigger: subHeaderRef.current,
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to(subHeaderSplit.words, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.1,
+            delay: 0.3
+          });
+        }
+      });
+    }
+
     //Initialize SplitText for headings
     splitHeadingsRef.current = headings.map(heading => 
       heading ? new SplitText(heading, { 
-        type: "chars,words,lines"
+        types: "chars,words,lines"
       }) : null
     ).filter(Boolean) as SplitText[];
 
@@ -117,8 +182,8 @@ export default function Services() {
     <section ref={containerRef} className="services-container py-16 lg:py-24">
       <style jsx>{`
         .services-container {
-          background: #0a0a0a;
-          color: white;
+          background: #0F1419;
+          color: #E2E8F0;
         }
         .service-section {
           height: 100vh;
@@ -177,13 +242,19 @@ export default function Services() {
       
       {/* Section Header */}
       <div className="text-center mb-16 px-4">
-        <h2 className="text-5xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
+        <h2 
+          ref={headerRef}
+          className="text-5xl lg:text-7xl font-bold text-pearl mb-4 tracking-tight overflow-hidden"
+        >
           What We
-          <span className="block bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-r from-accent via-stone to-accent bg-clip-text text-transparent">
             Create Together
           </span>
         </h2>
-        <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        <p 
+          ref={subHeaderRef}
+          className="text-xl text-silver max-w-2xl mx-auto leading-relaxed overflow-hidden"
+        >
           Where vision meets execution in perfect harmony
         </p>
       </div>
@@ -191,7 +262,7 @@ export default function Services() {
       {services.map((service, index) => (
         <div
           key={index}
-          ref={(el) => (sectionsRef.current[index] = el)}
+          ref={(el) => { sectionsRef.current[index] = el; }}
           className="service-section"
         >
           <div
@@ -201,7 +272,7 @@ export default function Services() {
             }}
           />
           <h2
-            ref={(el) => (headingsRef.current[index] = el)}
+            ref={(el) => { headingsRef.current[index] = el; }}
             className="service-title"
           >
             {service.title}

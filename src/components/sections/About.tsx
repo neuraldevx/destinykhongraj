@@ -13,7 +13,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 export default function About() {
   const aboutRef = useRef<HTMLDivElement>(null);
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
-  const factTimer = useRef<NodeJS.Timeout>();
+  const factTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   const firstRun = useRef(true);
 
   useEffect(() => {
@@ -54,16 +54,16 @@ export default function About() {
   }, [currentFactIndex]);
 
   return (
-    <section ref={aboutRef} className="bg-midnight text-mist py-16 lg:py-24 px-4">
+    <section ref={aboutRef} className="bg-charcoal text-pearl section-modern">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
           <Copy className="mb-6">
-            <h2 className="text-5xl lg:text-7xl font-light leading-tight text-mist">
+            <h2 className="heading-primary">
               Digital storyteller crafting authentic experiences
             </h2>
           </Copy>
           <Copy delay={0.3}>
-            <p className="text-xl lg:text-2xl font-light text-aluminum max-w-3xl leading-relaxed">
+            <p className="text-xl lg:text-2xl font-light text-silver max-w-3xl leading-relaxed">
               Where vision meets execution in perfect harmony
             </p>
           </Copy>
@@ -71,7 +71,7 @@ export default function About() {
 
         <div className="grid grid-cols-12 gap-6 lg:gap-8">
           <div className="about-image col-span-12 md:col-span-6">
-            <div className="rounded-2xl overflow-hidden border border-rose/20 shadow-xl">
+            <div className="rounded-2xl overflow-hidden border border-stone/20 subtle-shadow">
               <div className="relative w-full h-full aspect-square">
                 <Image
                   src={aboutFacts[currentFactIndex].imageUrl}
@@ -80,7 +80,7 @@ export default function About() {
                   className="object-cover transition-all duration-1000 ease-in-out"
                   sizes="(max-width:768px)100vw,50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-midnight/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
               </div>
             </div>
           </div>
@@ -88,44 +88,44 @@ export default function About() {
           <div className="about-content col-span-12 md:col-span-6 flex flex-col justify-center">
             <div className="mb-12 space-y-8">
               <Copy delay={0.6}>
-                <p className="text-lg lg:text-xl font-light text-mist leading-relaxed">
+                <p className="text-body">
                   I transform fleeting moments into eternal stories, weaving light and shadow
                   into narratives that breathe life into brands.
                 </p>
               </Copy>
               <Copy delay={0.8}>
-                <p className="text-lg lg:text-xl font-light text-mist leading-relaxed">
+                <p className="text-body">
                   In the space between what is and what could be, I find magic. Through authentic
                   storytelling, I help visions transcend the digital realm.
                 </p>
               </Copy>
               <Copy delay={1.0}>
-                <p className="text-lg lg:text-xl font-light text-mist leading-relaxed">
+                <p className="text-body">
                   My craft is rooted in the belief that every brand has a soul, every story deserves
                   to be heard, and every moment holds infinite potential.
                 </p>
               </Copy>
             </div>
 
-            <div className="bg-rose/10 backdrop-blur-sm rounded-2xl p-8 border border-rose/20 shadow-lg">
+            <div className="glass-effect rounded-2xl p-8 subtle-shadow">
               <div className="mb-6">
                 <Copy delay={1.2}>
-                  <h3 className="text-2xl font-medium text-mist mb-4">
+                  <h3 className="heading-secondary mb-4">
                     A little about me
                   </h3>
                 </Copy>
-                <div className="w-12 h-0.5 bg-coral rounded-full"></div>
+                <div className="w-12 h-0.5 bg-accent rounded-full"></div>
               </div>
 
               <div className="space-y-6">
                 <Copy delay={1.4}>
-                  <p className="text-lg font-light text-aluminum leading-relaxed">
+                  <p className="text-body">
                     {aboutFacts[currentFactIndex].description}
                   </p>
                 </Copy>
 
                 <div className="py-4">
-                  <div className="animated-number text-5xl lg:text-6xl font-light text-coral">0</div>
+                  <div className="animated-number text-5xl lg:text-6xl font-light text-accent">0</div>
                 </div>
               </div>
 
@@ -141,7 +141,7 @@ export default function About() {
                       }, 5000);
                     }}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentFactIndex ? 'bg-coral scale-110 shadow-md' : 'bg-aluminum hover:bg-mist'
+                      index === currentFactIndex ? 'bg-accent scale-110 shadow-md' : 'bg-silver hover:bg-pearl'
                     }`}
                   />
                 ))}
