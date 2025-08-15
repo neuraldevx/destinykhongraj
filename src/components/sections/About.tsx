@@ -30,7 +30,7 @@ export default function About() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: aboutRef.current,
-        start: "top 80%",
+        start: "top 0%",
       },
     });
     tl.from(".about-image", { x: -50, opacity: 0, duration: 1, ease: "power2.out" })

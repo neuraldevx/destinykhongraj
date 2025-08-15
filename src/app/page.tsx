@@ -38,8 +38,8 @@ export default function Home() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: section,
-          start: "top 90%",
-          end: "top 60%",
+          start: "top 80%",
+          end: "top 70%",
           scrub: 1,
         }
       });

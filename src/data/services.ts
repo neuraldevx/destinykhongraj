@@ -7,7 +7,7 @@ type Service = {
 
 export const services: Service[] = [
   {
-    title: "UGC",
+    title: "Social Media",
     description:
       "I leverage authentic content created by users to build trust and engagement with your audience, enhancing brand credibility and reach.",
     keywords: [
@@ -35,7 +35,7 @@ export const services: Service[] = [
     imageUrl: "/images/services/image-2.jpg",
   },
   {
-    title: "Short-Form Video",
+    title: "Placeholder",
     description:
       "I produce engaging short-form videos that capture attention quickly, convey your message effectively, and drive social media engagement.",
     keywords: [

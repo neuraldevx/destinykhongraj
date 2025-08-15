@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/services";
 import SplitText from "split-type";
+import { inter, playfair_display } from "@/fonts";
 
 //Register GSAP plugins
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -182,8 +183,8 @@ export default function Services() {
     <section ref={containerRef} className="services-container py-16 lg:py-24">
       <style jsx>{`
         .services-container {
-          background: #0F1419;
-          color: #E2E8F0;
+          background: #FDFBF7;
+          color: #1F2937;
         }
         .service-section {
           height: 100vh;
@@ -226,6 +227,7 @@ export default function Services() {
           line-height: 0.9;
           letter-spacing: -0.02em;
           text-transform: uppercase;
+          color: white;
         }
         .service-section .service-description {
           position: absolute;
@@ -237,6 +239,7 @@ export default function Services() {
           font-size: 1.2rem;
           line-height: 1.6;
           z-index: 10;
+          color: white;
         }
       `}</style>
       
@@ -244,16 +247,16 @@ export default function Services() {
       <div className="text-center mb-16 px-4">
         <h2 
           ref={headerRef}
-          className="text-5xl lg:text-7xl font-bold text-pearl mb-4 tracking-tight overflow-hidden"
+          className={`${inter.className} text-5xl lg:text-7xl font-light text-maroon-800 mb-4 tracking-tight overflow-hidden`}
         >
-          What We
-          <span className="block bg-gradient-to-r from-accent via-stone to-accent bg-clip-text text-transparent">
+          What We{" "}
+          <span className="block bg-gradient-to-r from-maroon-600 via-maroon-500 to-maroon-600 bg-clip-text text-black">
             Create Together
           </span>
         </h2>
         <p 
           ref={subHeaderRef}
-          className="text-xl text-silver max-w-2xl mx-auto leading-relaxed overflow-hidden"
+          className={`${playfair_display.className} text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed overflow-hidden`}
         >
           Where vision meets execution in perfect harmony
         </p>

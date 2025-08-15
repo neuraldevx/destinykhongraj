@@ -13,20 +13,44 @@
 @theme {
   --breakpoint-xs: 480px;
 
-  /* New sophisticated color palette */
-  --color-charcoal: #0F1419;
-  --color-slate: #2D3748;
-  --color-stone: #4A5568;
-  --color-silver: #718096;
-  --color-pearl: #E2E8F0;
-  --color-accent: #4299E1;
+  /* Professional white and maroon color palette */
+  --color-white: #FFFFFF;
+  --color-cream: #FDFBF7;
+  --color-maroon-50: #FEF2F2;
+  --color-maroon-100: #FEE2E2;
+  --color-maroon-200: #FECACA;
+  --color-maroon-300: #FCA5A5;
+  --color-maroon-400: #F87171;
+  --color-maroon-500: #EF4444;
+  --color-maroon-600: #DC2626;
+  --color-maroon-700: #B91C1C;
+  --color-maroon-800: #991B1B;
+  --color-maroon-900: #7F1D1D;
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
+  --color-accent: #8B5CF6;
   
   /* Legacy color mappings for gradual transition */
-  --color-midnight: #0F1419;
-  --color-coral: #4299E1;
-  --color-rose: #718096;
-  --color-aluminum: #718096;
-  --color-mist: #E2E8F0;
+  --color-charcoal: #1F2937;
+  --color-slate: #374151;
+  --color-stone: #4B5563;
+  --color-silver: #9CA3AF;
+  --color-pearl: #F9FAFB;
+  
+  /* Legacy color mappings for gradual transition */
+  --color-midnight: #1F2937;
+  --color-coral: #8B5CF6;
+  --color-rose: #F87171;
+  --color-aluminum: #9CA3AF;
+  --color-mist: #F9FAFB;
 
   --font-family-gambarino: 'Gambarino-Regular', 'Arial', sans-serif;
   --font-gambarino: 'Gambarino-Regular', 'Arial', sans-serif;
@@ -53,6 +77,7 @@
   body {
     font-family: var(--font-gambarino);
     font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'pnum' 1, 'tnum' 0, 'onum' 1, 'lnum' 0, 'dlig' 0;
+    @apply bg-white text-gray-900;
   }
 
   /* Typography Scale */
@@ -79,8 +104,13 @@
 
   /* Section spacing */
   section {
-    padding-top: clamp(4rem, 10vw, 8rem);
-    padding-bottom: clamp(4rem, 10vw, 8rem);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  /* Remove default margins to eliminate gaps */
+  section:not(:first-child) {
+    margin-top: 0;
   }
 
   /* Improved focus states */
@@ -178,21 +208,6 @@
 
 }
 
-#card-0 .card-inner {
-  @apply bg-accent;
-}
-
-#card-1 .card-inner {
-  @apply bg-slate;
-}
-
-#card-2 .card-inner {
-  @apply bg-stone;
-}
-
-#card-3 .card-inner {
-  @apply bg-silver;
-}
 
 @keyframes blink {
   0% {

@@ -60,7 +60,7 @@ export default function Projects() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="content max-w-[1240px] mx-auto px-4">
+    <section ref={containerRef} className="content bg-white px-4 py-16 lg:py-24">
       <style jsx>{`
         .content__hero {
           height: 40vh;
@@ -73,7 +73,7 @@ export default function Projects() {
           text-align: center;
           font-size: clamp(2rem, 8vw, 4rem);
           font-weight: 300;
-          color: white;
+          color: #991B1B;
         }
         
         .features {
@@ -88,7 +88,7 @@ export default function Projects() {
           align-items: center;
           gap: 2rem;
           height: 100vh;
-          border-top: dashed 2px #666;
+          border-top: dashed 2px #DC2626;
         }
         
         .features__item--left {
@@ -128,12 +128,12 @@ export default function Projects() {
           font-size: 1.8em;
           margin-block-end: 1rem;
           font-weight: 600;
-          color: white;
+          color: #991B1B;
         }
         
         .features__description {
           line-height: 1.6;
-          color: #ccc;
+          color: #4B5563;
           font-size: 1.1rem;
         }
         
@@ -205,6 +205,6 @@ export default function Projects() {
       </div>
       
       <div className="spacer"></div>
-    </div>
+    </section>
   );
 }

@@ -4,6 +4,7 @@ import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { inter, playfair_display } from "@/fonts";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -99,19 +100,15 @@ export default function AboutHorizontal() {
         });
 
         // Create ScrollTrigger for horizontal scroll
-        // Allow normal scrolling first, then start horizontal scroll
+        // Wait for section to be fully centered before starting horizontal scroll
         ScrollTrigger.create({
           trigger: container,
-          start: "top center", // Start when section reaches center of viewport
+          start: "top top", // Start when section top reaches viewport top
           end: `+=${scrollDistance + window.innerHeight}`, // Add extra scroll distance
           scrub: true,
           pin: true,
           animation: scrollTween,
-          invalidateOnRefresh: true,
-          onEnter: () => {
-            // Ensure component is fully visible before starting horizontal scroll
-            ScrollTrigger.refresh();
-          }
+          invalidateOnRefresh: true
         });
 
         // Add panel reveal animations
@@ -150,7 +147,7 @@ export default function AboutHorizontal() {
     <section 
       ref={containerRef}
       aria-labelledby="about-title"
-      className="relative bg-charcoal overflow-hidden"
+      className="relative bg-white overflow-hidden pt-0 pb-0"
     >
       <h2 id="about-title" className="sr-only">About Destiny Khongraj</h2>
       
@@ -164,7 +161,7 @@ export default function AboutHorizontal() {
             ref={(el) => { panelRefs.current[index] = el; }}
             className="w-full md:w-screen md:h-screen flex-shrink-0 flex items-center justify-center p-8 md:p-16"
             style={{
-              backgroundColor: index % 2 === 0 ? '#1a202c' : '#2d3748'
+              backgroundColor: index % 2 === 0 ? '#FFFFFF' : '#FDFBF7'
             }}
           >
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -180,15 +177,15 @@ export default function AboutHorizontal() {
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   ) : (
-                    <div className="w-full h-full bg-stone/20 flex items-center justify-center">
-                      <div className="text-center text-stone">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-stone/20 flex items-center justify-center">
+                    <div className="w-full h-full bg-maroon-100 flex items-center justify-center">
+                      <div className="text-center text-maroon-600">
+                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-maroon-200 flex items-center justify-center">
                           <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
                           </svg>
                         </div>
-                        <p className="text-sm font-medium">Image placeholder for {panel.title}</p>
-                        <p className="text-xs opacity-70 mt-1">Replace with custom image</p>
+                        <p className={`${inter.className} text-sm font-medium`}>Image placeholder for {panel.title}</p>
+                        <p className={`${inter.className} text-xs opacity-70 mt-1`}>Replace with custom image</p>
                       </div>
                     </div>
                   )}
@@ -198,14 +195,14 @@ export default function AboutHorizontal() {
 
               {/* Content Section */}
               <div className={`${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-                <h3 className="text-4xl md:text-6xl font-bold text-pearl mb-8">
+                <h3 className={`${inter.className} text-4xl md:text-6xl font-light text-maroon-800 mb-8 tracking-tight`}>
                   {panel.title}
                 </h3>
                 <div className="space-y-4">
                   {panel.content.map((paragraph, pIndex) => (
                     <p 
                       key={pIndex}
-                      className="text-lg md:text-xl text-silver leading-relaxed"
+                      className={`${playfair_display.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
                     >
                       {paragraph}
                     </p>
@@ -223,7 +220,7 @@ export default function AboutHorizontal() {
           {panelData.map((_, index) => (
             <div 
               key={index}
-              className="w-2 h-2 bg-stone rounded-full"
+              className="w-2 h-2 bg-maroon-400 rounded-full"
             />
           ))}
         </div>

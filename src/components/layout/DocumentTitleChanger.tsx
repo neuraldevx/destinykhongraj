@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const titles = [
   "Destiny Khongraj",
-  "Portfolio",
+  "hi!!!",
   "Content Creator",
   "Digital Storyteller",
 ];
