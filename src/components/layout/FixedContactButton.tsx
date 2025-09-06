@@ -109,7 +109,7 @@ export default function FixedContactButton({ formRef }: FixedContactButtonProps)
         </span>
       </div>
 
-      <div className={`${isModalOpen ? "text-pearl" : "text-accent"} overflow-hidden h-7 lg:h-9`}>
+      <div className={`${isModalOpen ? "text-charcoal" : "text-charcoal"} overflow-hidden h-7 lg:h-9`}>
         <div className="flex flex-col transition-transform duration-200 ease-[cubic-bezier(0.64,0.57,0.67,1.53)] group-hover:-translate-y-1/2">
           <span className="text-xl lg:text-3xl font-semibold">{isModalOpen ? "Submit" : "Contact"}</span>
           <span className="text-xl lg:text-3xl font-semibold">{isModalOpen ? "Submit" : "Contact"}</span>
@@ -118,4 +118,3 @@ export default function FixedContactButton({ formRef }: FixedContactButtonProps)
     </motion.button>
   );
 }
-

@@ -290,8 +290,6 @@ function ExperienceDetails({ paragraphs }: { paragraphs: string[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number | null>(null);
 
-  if (!paragraphs || paragraphs.length === 0) return null;
-
   // Fade/scale overlay in and trap background scroll
   useLayoutEffect(() => {
     const o = overlayRef.current;
@@ -339,6 +337,9 @@ function ExperienceDetails({ paragraphs }: { paragraphs: string[] }) {
     touchStartY.current = e.touches[0].clientY;
   };
 
+  // If no content, render nothing (after hooks for rules-of-hooks compliance)
+  if (!paragraphs || paragraphs.length === 0) return null;
+
   return (
     <div>
       <button
@@ -383,7 +384,7 @@ function ExperienceDetails({ paragraphs }: { paragraphs: string[] }) {
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               className="overflow-y-auto overscroll-contain p-5 md:p-6 pt-4 md:pt-5 pr-3 md:pr-4 space-y-4"
-              style={{ WebkitOverflowScrolling: 'touch' as any }}
+              style={{ WebkitOverflowScrolling: 'touch' }}
             >
               {paragraphs.map((p, i) => (
                 <p key={i} className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">{p}</p>

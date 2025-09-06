@@ -274,9 +274,9 @@ export default function Services() {
             style={{
               backgroundImage: `url(${service.imageUrl})`,
               // Adjust focal point per item via services.ts (service.position)
-              backgroundPosition: (service as any).position || 'center',
+              backgroundPosition: service.position ?? 'center',
               // Override fit per item via services.ts (service.fit: 'cover' | 'contain')
-              backgroundSize: (service as any).fit || 'cover',
+              backgroundSize: service.fit ?? 'cover',
             }}
           />
           <h2
