@@ -102,7 +102,8 @@ export default function Services() {
       
       //Set initial states
       gsap.set(chars, { y: 100, opacity: 0 });
-      gsap.set(backgroundEl, { scale: 1.2 });
+      // Start at 1 to avoid any initial zoom that crops the image
+      gsap.set(backgroundEl, { scale: 1 });
 
       //Create timeline for this section
       ScrollTrigger.create({
@@ -213,9 +214,9 @@ export default function Services() {
           height: 100%;
           background: linear-gradient(
             180deg,
-            rgba(0, 0, 0, 0.7) 0%,
-            rgba(0, 0, 0, 0.3) 50%,
-            rgba(0, 0, 0, 0.7) 100%
+            rgba(0, 0, 0, 0.35) 0%,
+            rgba(0, 0, 0, 0.12) 50%,
+            rgba(0, 0, 0, 0.35) 100%
           );
         }
         .service-section h2 {
@@ -271,7 +272,11 @@ export default function Services() {
           <div
             className="bg"
             style={{
-              backgroundImage: `url(${service.imageUrl})`
+              backgroundImage: `url(${service.imageUrl})`,
+              // Adjust focal point per item via services.ts (service.position)
+              backgroundPosition: (service as any).position || 'center',
+              // Override fit per item via services.ts (service.fit: 'cover' | 'contain')
+              backgroundSize: (service as any).fit || 'cover',
             }}
           />
           <h2
