@@ -5,13 +5,17 @@ import { inter, playfair_display } from "@/fonts";
 import Slider from "@/components/layout/Slider";
 import { useEffect, useRef } from "react";
 
+// Slider images sourced from public/images/hero (PNG set provided)
 const sliderImages = [
-  "/images/hero/image-1.jpg",
-  "/images/hero/image-2.jpg",
-  "/images/hero/image-3.jpg",
-  "/images/hero/image-4.jpg",
-  "/images/hero/image-5.jpg",
-  "/images/hero/image-6.jpg",
+  "/images/hero/image-1.png",
+  "/images/hero/image-2.png",
+  "/images/hero/image-3.png",
+  "/images/hero/image-4.png",
+  "/images/hero/image-5.png",
+  "/images/hero/image-6.png",
+  "/images/hero/image-7.png",
+  "/images/hero/image-8.png",
+  "/images/hero/image-9.png",
 ];
 
 export default function Hero() {
@@ -27,7 +31,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={containerRef} className="pt-4 pb-0 h-screen relative bg-gradient-to-b from-white via-cream to-maroon-50">
+    <section id="hero" ref={containerRef} className="pt-4 pb-0 h-screen relative bg-gradient-to-b from-white via-cream to-maroon-50">
       <div className="px-4">
         <h1 className="hidden">Destiny Khongraj</h1>
 
@@ -74,10 +78,10 @@ export default function Hero() {
               }}
               className="w-full pointer-events-none mb-6"
             >
-              <h2 
-                className={`${inter.className} text-6xl md:text-8xl lg:text-9xl font-light text-maroon-800 cursor-default tracking-tight`}
+              <h2
+                className={`${inter.className} text-6xl md:text-8xl lg:text-9xl font-extrabold text-maroon-800 cursor-default tracking-tight leading-none`}
               >
-                DESTINY
+                Destiny
               </h2>
             </motion.div>
           </div>
@@ -93,10 +97,10 @@ export default function Hero() {
               }}
               className="w-full pointer-events-none mb-6"
             >
-              <h2 
-                className={`${inter.className} text-6xl md:text-8xl lg:text-9xl font-light text-maroon-800 cursor-default tracking-tight`}
+              <h2
+                className={`${inter.className} text-6xl md:text-8xl lg:text-9xl font-extrabold text-maroon-800 cursor-default tracking-tight leading-none`}
               >
-                KHONGRAJ
+                Khongraj
               </h2>
             </motion.div>
           </div>

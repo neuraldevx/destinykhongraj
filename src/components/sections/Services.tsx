@@ -180,7 +180,7 @@ export default function Services() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="services-container py-16 lg:py-24">
+    <section id="services" ref={containerRef} className="services-container py-16 lg:py-24">
       <style jsx>{`
         .services-container {
           background: #FDFBF7;
