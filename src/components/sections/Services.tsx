@@ -184,8 +184,8 @@ export default function Services() {
     <section id="services" ref={containerRef} className="services-container py-16 lg:py-24">
       <style jsx>{`
         .services-container {
-          background: #FDFBF7;
-          color: #1F2937;
+          background: #FFFDEF;
+          color: #290102;
         }
         .service-section {
           height: 100vh;
@@ -248,16 +248,16 @@ export default function Services() {
       <div className="text-center mb-16 px-4">
         <h2 
           ref={headerRef}
-          className={`${inter.className} text-5xl lg:text-7xl font-light text-maroon-800 mb-4 tracking-tight overflow-hidden`}
+          className={`${inter.className} text-5xl lg:text-7xl font-light text-heading mb-4 tracking-tight overflow-hidden`}
         >
           What We{" "}
-          <span className="block bg-gradient-to-r from-maroon-600 via-maroon-500 to-maroon-600 bg-clip-text text-black">
+          <span className="block bg-gradient-to-r from-[#A68621] via-[#A7292F] to-[#A68621] bg-clip-text text-transparent">
             Create Together
           </span>
         </h2>
         <p 
           ref={subHeaderRef}
-          className={`${playfair_display.className} text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed overflow-hidden`}
+          className={`${playfair_display.className} text-xl text-subheading/80 max-w-2xl mx-auto leading-relaxed overflow-hidden`}
         >
           Where vision meets execution in perfect harmony
         </p>

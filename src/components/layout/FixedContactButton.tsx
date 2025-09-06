@@ -66,7 +66,7 @@ export default function FixedContactButton({ formRef }: FixedContactButtonProps)
       ref={buttonRef}
       aria-label={isModalOpen ? "Submit contact form" : "Open contact form"}
       className={`${
-        isModalOpen ? "bg-accent" : "bg-pearl"
+        isModalOpen ? "bg-accent" : "bg-cream"
       } fixed bottom-8 left-1/2 -translate-x-1/2 pl-1 py-1 pr-4 xl:pr-6 rounded-full shadow-2xl cursor-pointer group z-50 transition-colors duration-700 delay-100 ease-in-out flex items-center gap-2 xl:gap-3`}
     >
       <div className="h-12 xl:h-16 w-12 xl:w-16 relative rounded-full">
@@ -88,7 +88,7 @@ export default function FixedContactButton({ formRef }: FixedContactButtonProps)
         <span
           className={`${
             isModalOpen ? "opacity-0" : ""
-          } flex items-center justify-center h-12 xl:h-16 w-12 xl:w-16 bg-pearl rounded-full scale-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:scale-100 transition-all duration-200 ease-[cubic-bezier(0.64,0.57,0.67,1.53)]`}
+          } flex items-center justify-center h-12 xl:h-16 w-12 xl:w-16 bg-cream rounded-full scale-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:scale-100 transition-all duration-200 ease-[cubic-bezier(0.64,0.57,0.67,1.53)]`}
         >
           <IconMail className="text-accent" stroke={2.5} size={width < 728 ? 20 : 30} />
         </span>
@@ -96,7 +96,7 @@ export default function FixedContactButton({ formRef }: FixedContactButtonProps)
         <span
           className={`${
             isModalOpen ? "scale-100 opacity-100" : "scale-75 opacity-0"
-          } h-12 xl:h-16 w-12 xl:w-16 bg-pearl rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden flex items-center justify-end transition-all duration-200 delay-200 ease-[cubic-bezier(0.64,0.57,0.67,1.53)]`}
+          } h-12 xl:h-16 w-12 xl:w-16 bg-cream rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden flex items-center justify-end transition-all duration-200 delay-200 ease-[cubic-bezier(0.64,0.57,0.67,1.53)]`}
         >
           <div className="flex transition-transform duration-200 ease-[cubic-bezier(0.64,0.57,0.67,1.53)] group-hover:translate-x-1/2">
             <div className="flex items-center justify-center w-12 xl:w-16">
@@ -109,7 +109,7 @@ export default function FixedContactButton({ formRef }: FixedContactButtonProps)
         </span>
       </div>
 
-      <div className={`${isModalOpen ? "text-charcoal" : "text-charcoal"} overflow-hidden h-7 lg:h-9`}>
+      <div className={`${isModalOpen ? "text-cream" : "text-heading"} overflow-hidden h-7 lg:h-9`}>
         <div className="flex flex-col transition-transform duration-200 ease-[cubic-bezier(0.64,0.57,0.67,1.53)] group-hover:-translate-y-1/2">
           <span className="text-xl lg:text-3xl font-semibold">{isModalOpen ? "Submit" : "Contact"}</span>
           <span className="text-xl lg:text-3xl font-semibold">{isModalOpen ? "Submit" : "Contact"}</span>

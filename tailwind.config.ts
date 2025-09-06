@@ -9,20 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // New sophisticated color palette
-        charcoal: '#0F1419',        // Deep charcoal - primary dark background
-        slate: '#2D3748',           // Slate - secondary dark elements
-        stone: '#4A5568',           // Stone - medium gray for borders/dividers
-        silver: '#718096',          // Silver - light gray for secondary text
-        pearl: '#E2E8F0',           // Pearl - light elements and primary text
-        accent: '#4299E1',          // Subtle blue accent - professional
-        
-        // Legacy color mappings for gradual transition
-        midnight: '#0F1419',        // Updated to charcoal
-        coral: '#4299E1',           // Updated to accent blue
-        rose: '#718096',            // Updated to silver
-        aluminum: '#718096',        // Updated to silver
-        mist: '#E2E8F0',            // Updated to pearl
+        // Site palette (aligned with globals.css @theme)
+        cream: '#FFFDEF',           // Background
+        heading: '#A7292F',         // Primary headings
+        subheading: '#290102',      // Body + subheadings
+        gold: '#A68621',            // Accents
+
+        // Legacy neutrals retained for compatibility
+        charcoal: '#0F1419',
+        slate: '#2D3748',
+        stone: '#4A5568',
+        silver: '#718096',
+        pearl: '#E2E8F0',
+        accent: '#A68621',          // Map accent -> gold
+        midnight: '#0F1419',
+        coral: '#A68621',
+        rose: '#718096',
+        aluminum: '#718096',
+        mist: '#E2E8F0',
       },
       fontFamily: {
         'inter': ['var(--font-inter)'],

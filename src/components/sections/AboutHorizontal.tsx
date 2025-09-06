@@ -174,7 +174,7 @@ export default function AboutHorizontal() {
       id="about"
       ref={containerRef}
       aria-labelledby="about-title"
-      className="relative bg-white overflow-hidden pt-0 pb-0"
+      className="relative bg-cream overflow-hidden pt-0 pb-0"
     >
       <h2 id="about-title" className="sr-only">About Destiny Khongraj</h2>
       
@@ -186,7 +186,7 @@ export default function AboutHorizontal() {
           <div
             key={panel.id}
             ref={(el) => { panelRefs.current[index] = el; }}
-            className="w-full md:w-screen md:h-screen flex-shrink-0 flex items-center justify-center p-8 md:p-16 bg-white"
+            className="w-full md:w-screen md:h-screen flex-shrink-0 flex items-center justify-center p-8 md:p-16 bg-cream"
           >
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 items-start">
               {/* Image Section */}
@@ -212,20 +212,20 @@ export default function AboutHorizontal() {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                   </div>
-                  <figcaption className="text-sm text-gray-500 mt-3">— {panel.title}</figcaption>
+                  <figcaption className="text-sm text-subheading/70 mt-3">— {panel.title}</figcaption>
                 </figure>
               </div>
 
               {/* Content Section */}
               <div className="lg:order-2">
-                <h3 className={`text-5xl md:text-6xl font-semibold text-maroon-800 mb-3 md:mb-4 tracking-tight`}>
+                <h3 className={`text-5xl md:text-6xl font-semibold text-heading mb-3 md:mb-4 tracking-tight`}>
                   {panel.title}
                 </h3>
-                <div aria-hidden className="h-[2px] w-16 bg-gradient-to-r from-maroon-600 to-maroon-300 rounded mb-6 md:mb-8" />
+                <div aria-hidden className="h-[2px] w-16 bg-gradient-to-r from-[#A68621] to-[#A68621]/50 rounded mb-6 md:mb-8" />
                 {panel.id === 'skills' ? (
                   <ul className={`
-                    text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed
-                    list-disc marker:text-maroon-600 pl-6
+                    text-base sm:text-lg md:text-xl text-subheading leading-relaxed
+                    list-disc marker:text-heading pl-6
                     grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-10
                   `}>
                     {panel.content.map((item, i) => (
@@ -235,12 +235,12 @@ export default function AboutHorizontal() {
                 ) : panel.id === 'experience' ? (
                   <div className="space-y-5 max-w-[70ch]">
                     {panel.summary && (
-                      <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
+                      <p className="text-base sm:text-lg md:text-xl text-subheading leading-relaxed">
                         {panel.summary}
                       </p>
                     )}
                     {panel.bullets && (
-                      <ul className="list-disc marker:text-maroon-600 pl-6 grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-8 text-gray-700 text-base sm:text-lg md:text-xl">
+                      <ul className="list-disc marker:text-heading pl-6 grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-8 text-subheading text-base sm:text-lg md:text-xl">
                         {panel.bullets.map((b, i) => (
                           <li key={i}>{b}</li>
                         ))}
@@ -254,7 +254,7 @@ export default function AboutHorizontal() {
                     {panel.content.map((paragraph, pIndex) => (
                       <p
                         key={pIndex}
-                        className={`text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed`}
+                        className={`text-base sm:text-lg md:text-xl text-subheading leading-relaxed`}
                       >
                         {paragraph}
                       </p>
@@ -273,7 +273,7 @@ export default function AboutHorizontal() {
           {panelData.map((_, index) => (
             <div 
               key={index}
-              className="w-2 h-2 bg-maroon-400 rounded-full"
+              className="w-2 h-2 bg-[#A68621] rounded-full"
             />
           ))}
         </div>
@@ -344,7 +344,7 @@ function ExperienceDetails({ paragraphs }: { paragraphs: string[] }) {
     <div>
       <button
         type="button"
-        className="text-maroon-700 hover:text-maroon-800 underline decoration-maroon-300 underline-offset-4 text-base md:text-lg"
+        className="text-heading hover:text-subheading underline decoration-[#A68621]/60 underline-offset-4 text-base md:text-lg"
         onClick={() => setOpen(true)}
         aria-expanded={open}
       >
@@ -363,15 +363,15 @@ function ExperienceDetails({ paragraphs }: { paragraphs: string[] }) {
         >
           <div
             data-card
-            className="relative bg-white rounded-xl shadow-xl w-[min(92vw,900px)] max-h-[80vh] overflow-hidden"
+            className="relative bg-cream rounded-xl shadow-xl w-[min(92vw,900px)] max-h-[80vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Sticky header with close button so it never overlays body text */}
-            <div className="sticky top-0 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 border-b border-gray-200/70 px-4 md:px-5 py-2.5 flex justify-end z-10">
+            <div className="sticky top-0 bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/85 border-b border-gray-200/70 px-4 md:px-5 py-2.5 flex justify-end z-10">
               <button
                 type="button"
                 aria-label="Close"
-                className="rounded-full px-3.5 py-1.5 text-maroon-700 border border-maroon-200 hover:bg-maroon-50 text-sm"
+                className="rounded-full px-3.5 py-1.5 text-heading border border-[#A68621]/40 hover:bg-[#A68621]/10 text-sm"
                 onClick={() => setOpen(false)}
               >
                 Close
@@ -387,7 +387,7 @@ function ExperienceDetails({ paragraphs }: { paragraphs: string[] }) {
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
               {paragraphs.map((p, i) => (
-                <p key={i} className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">{p}</p>
+                <p key={i} className="text-base sm:text-lg md:text-xl text-subheading leading-relaxed">{p}</p>
               ))}
               {!atBottom && <div aria-hidden className="h-10" />}
             </div>
@@ -564,11 +564,11 @@ function HobbiesSlideshow({ primary, fallback }: { primary?: string; fallback: s
           ))}
           {/* Mini slider controls */}
           {sources.length > 1 && (
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 px-2 py-1 rounded-full bg-white/80 shadow-sm">
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 px-2 py-1 rounded-full bg-cream/90 shadow-sm">
               <button
                 type="button"
                 aria-label="Previous"
-                className="px-2 py-1 text-maroon-800 hover:text-maroon-900"
+                className="px-2 py-1 text-heading hover:text-subheading"
                 onClick={(e) => { e.stopPropagation(); manualNav(-1); }}
               >
                 ‹
@@ -578,7 +578,7 @@ function HobbiesSlideshow({ primary, fallback }: { primary?: string; fallback: s
                   <button
                     key={i}
                     aria-label={`Go to image ${i + 1}`}
-                    className={`w-2 h-2 rounded-full ${i === active ? 'bg-maroon-700' : 'bg-gray-400/70'}`}
+                    className={`w-2 h-2 rounded-full ${i === active ? 'bg-heading' : 'bg-gray-400/70'}`}
                     onClick={(e) => { e.stopPropagation(); manualNav(i - activeRef.current); }}
                   />
                 ))}
@@ -586,7 +586,7 @@ function HobbiesSlideshow({ primary, fallback }: { primary?: string; fallback: s
               <button
                 type="button"
                 aria-label="Next"
-                className="px-2 py-1 text-maroon-800 hover:text-maroon-900"
+                className="px-2 py-1 text-heading hover:text-subheading"
                 onClick={(e) => { e.stopPropagation(); manualNav(1); }}
               >
                 ›
@@ -679,14 +679,14 @@ function SkillsSlideshow({ primary, fallback }: { primary?: string; fallback: st
             <Image key={i} src={src} alt={`Skill ${i + 1}`} fill className="skills-frame object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
           ))}
           {sources.length > 1 && (
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 px-2 py-1 rounded-full bg-white/80 shadow-sm z-10">
-              <button type="button" aria-label="Previous" className="px-2 py-1 text-maroon-800 hover:text-maroon-900" onClick={(e) => { e.stopPropagation(); manualNav('prev'); }}>‹</button>
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 px-2 py-1 rounded-full bg-cream/90 shadow-sm z-10">
+              <button type="button" aria-label="Previous" className="px-2 py-1 text-heading hover:text-subheading" onClick={(e) => { e.stopPropagation(); manualNav('prev'); }}>‹</button>
               <div className="flex items-center gap-1">
                 {sources.map((_, i) => (
-                  <button key={i} aria-label={`Go to image ${i + 1}`} className={`w-2 h-2 rounded-full ${i === active ? 'bg-maroon-700' : 'bg-gray-400/70'}`} onClick={(e) => { e.stopPropagation(); manualNav(i); }} />
+                  <button key={i} aria-label={`Go to image ${i + 1}`} className={`w-2 h-2 rounded-full ${i === active ? 'bg-heading' : 'bg-gray-400/70'}`} onClick={(e) => { e.stopPropagation(); manualNav(i); }} />
                 ))}
               </div>
-              <button type="button" aria-label="Next" className="px-2 py-1 text-maroon-800 hover:text-maroon-900" onClick={(e) => { e.stopPropagation(); manualNav('next'); }}>›</button>
+              <button type="button" aria-label="Next" className="px-2 py-1 text-heading hover:text-subheading" onClick={(e) => { e.stopPropagation(); manualNav('next'); }}>›</button>
             </div>
           )}
         </>

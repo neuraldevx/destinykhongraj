@@ -135,7 +135,7 @@ export default function Footer() {
       link.addEventListener('mouseenter', () => {
         gsap.to(link, {
           scale: 1.1,
-          color: "#DC2626",
+          color: "#A7292F",
           duration: 0.3,
           ease: "power2.out"
         });
@@ -174,58 +174,58 @@ export default function Footer() {
   }, { scope: footerRef });
 
   return (
-    <section ref={footerRef} id="footer" className="relative bg-white py-16 lg:py-24">
+    <section ref={footerRef} id="footer" className="relative bg-cream py-16 lg:py-24">
       {/* Background Pattern */}
       <div className="background-pattern absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-32 h-32 border border-maroon-300 rounded-full"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 border border-maroon-400 rounded-full"></div>
-        <div className="absolute bottom-20 left-1/3 w-40 h-40 border border-maroon-300 rounded-full"></div>
-        <div className="absolute bottom-40 right-10 w-20 h-20 border border-maroon-400 rounded-full"></div>
+        <div className="absolute top-10 left-10 w-32 h-32 border border-[#A68621] rounded-full"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 border border-[#A68621] rounded-full"></div>
+        <div className="absolute bottom-20 left-1/3 w-40 h-40 border border-[#A68621] rounded-full"></div>
+        <div className="absolute bottom-40 right-10 w-20 h-20 border border-[#A68621] rounded-full"></div>
       </div>
 
       <footer className="relative space-y-16 px-6 lg:px-12">
         {/* Header with location and time */}
         <div className="flex justify-between items-start mb-16 max-w-7xl mx-auto">
-          <p className={`location-time ${inter.className} font-medium text-lg text-gray-600`}>
+          <p className={`location-time ${inter.className} font-medium text-lg text-subheading/80`}>
             Los Angeles, CA
           </p>
-          <div className={`location-time ${inter.className} text-maroon-600 font-medium text-lg`}>
+          <div className={`location-time ${inter.className} text-heading font-medium text-lg`}>
             {currentTime}
           </div>
         </div>
 
         {/* Main content */}
         <div className="text-center py-16 max-w-7xl mx-auto">
-          <h2 className={`footer-title ${inter.className} text-5xl md:text-7xl font-light text-maroon-800 mb-12 leading-tight tracking-tight`}>
+          <h2 className={`footer-title ${inter.className} text-5xl md:text-7xl font-light text-heading mb-12 leading-tight tracking-tight`}>
             Let&apos;s work{" "}
-            <span className="bg-gradient-to-r from-maroon-600 to-maroon-500 bg-clip-text text-transparent">together!</span>
+            <span className="bg-gradient-to-r from-[#A68621] to-[#A7292F] bg-clip-text text-transparent">together!</span>
           </h2>
 
-          <button className={`footer-button ${inter.className} bg-gradient-to-r from-maroon-600 to-maroon-700 hover:from-maroon-700 hover:to-maroon-800 text-white px-10 py-4 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-2xl border border-maroon-500`}>
+          <button className={`footer-button ${inter.className} bg-gradient-to-r from-[#A68621] to-[#A7292F] hover:from-[#A7292F] hover:to-[#A68621] text-cream px-10 py-4 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-2xl border border-[#A68621]/60`}>
             Get in Touch
           </button>
         </div>
 
         {/* Footer navigation */}
-        <div className="grid grid-cols-3 gap-8 text-center md:text-left pt-16 border-t border-maroon-200 max-w-7xl mx-auto">
+        <div className="grid grid-cols-3 gap-8 text-center md:text-left pt-16 border-t border-[#A68621]/30 max-w-7xl mx-auto">
           <div className="space-y-3">
-            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-gray-600 hover:text-maroon-600 transition-colors text-lg`}>
+            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               Instagram
             </a>
-            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-gray-600 hover:text-maroon-600 transition-colors text-lg`}>
+            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               YouTube
             </a>
           </div>
           
           <div className="flex justify-center items-center">
-            <p className={`${inter.className} font-medium text-maroon-500 text-lg`}>©2025</p>
+            <p className={`${inter.className} font-medium text-heading text-lg`}>©2025</p>
           </div>
           
           <div className="space-y-3 text-right">
-            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-gray-600 hover:text-maroon-600 transition-colors text-lg`}>
+            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               LinkedIn
             </a>
-            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-gray-600 hover:text-maroon-600 transition-colors text-lg`}>
+            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               TikTok
             </a>
           </div>

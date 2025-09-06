@@ -60,7 +60,7 @@ export default function Projects() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="content bg-white px-4 py-16 lg:py-24">
+    <section ref={containerRef} className="content bg-cream px-4 py-16 lg:py-24">
       <style jsx>{`
         .content__hero {
           height: 40vh;
@@ -73,7 +73,7 @@ export default function Projects() {
           text-align: center;
           font-size: clamp(2rem, 8vw, 4rem);
           font-weight: 300;
-          color: #4299E1; /* accent */
+          color: #A7292F; /* heading */
         }
         
         .features {
@@ -88,7 +88,7 @@ export default function Projects() {
           align-items: center;
           gap: 2rem;
           height: 100vh;
-          border-top: dashed 2px #4A5568; /* stone */
+          border-top: dashed 2px #A68621; /* gold */
         }
         
         .features__item--left {
@@ -128,12 +128,12 @@ export default function Projects() {
           font-size: 1.8em;
           margin-block-end: 1rem;
           font-weight: 600;
-          color: #4299E1; /* accent */
+          color: #A7292F; /* heading */
         }
         
         .features__description {
           line-height: 1.6;
-          color: #718096; /* silver */
+          color: #290102; /* subheading */
           font-size: 1.1rem;
         }
         
@@ -204,7 +204,7 @@ export default function Projects() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-4 bg-accent text-charcoal px-5 py-2 rounded-full font-medium hover:bg-accent/90 transition-colors"
+                  className="inline-block mt-4 bg-accent text-cream px-5 py-2 rounded-full font-medium hover:bg-accent/90 transition-colors"
                 >
                   View Here
                 </a>

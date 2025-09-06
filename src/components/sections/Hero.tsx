@@ -31,7 +31,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" ref={containerRef} className="pt-4 pb-0 h-screen relative bg-gradient-to-b from-white via-cream to-maroon-50">
+    <section id="hero" ref={containerRef} className="pt-4 pb-0 h-screen relative bg-cream">
       <div className="px-4">
         <h1 className="hidden">Destiny Khongraj</h1>
 
@@ -79,7 +79,7 @@ export default function Hero() {
               className="w-full pointer-events-none mb-6"
             >
               <h2
-                className={`${inter.className} text-6xl md:text-8xl lg:text-9xl font-extrabold text-maroon-800 cursor-default tracking-tight leading-none`}
+                className={`${inter.className} text-6xl md:text-8xl lg:text-9xl font-extrabold text-heading cursor-default tracking-tight leading-none`}
               >
                 Destiny
               </h2>
@@ -98,7 +98,7 @@ export default function Hero() {
               className="w-full pointer-events-none mb-6"
             >
               <h2
-                className={`${inter.className} text-6xl md:text-8xl lg:text-9xl font-extrabold text-maroon-800 cursor-default tracking-tight leading-none`}
+                className={`${inter.className} text-6xl md:text-8xl lg:text-9xl font-extrabold text-heading cursor-default tracking-tight leading-none`}
               >
                 Khongraj
               </h2>
@@ -117,7 +117,7 @@ export default function Hero() {
                   delay: 1.9,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className={`${inter.className} text-[clamp(18px,1.4vw,28px)] font-medium leading-[1.2] text-center md:text-left text-maroon-700`}
+                className={`${inter.className} text-[clamp(18px,1.4vw,28px)] font-medium leading-[1.2] text-center md:text-left text-subheading`}
               >
                 Visual Architect & Digital Dreamer
               </motion.p>
@@ -153,7 +153,7 @@ export default function Hero() {
                   delay: 1.95,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className={`${playfair_display.className} text-[clamp(18px,1.4vw,28px)] font-normal -mt-1 leading-[1.2] text-center md:text-left text-gray-700`}
+                className={`${playfair_display.className} text-[clamp(18px,1.4vw,28px)] font-normal -mt-1 leading-[1.2] text-center md:text-left text-subheading`}
               >
                 Crafting stories that resonate across universes
               </motion.p>

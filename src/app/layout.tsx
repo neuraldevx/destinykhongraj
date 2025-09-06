@@ -20,7 +20,7 @@ export default function RootLayout({
       <FooterProvider>
         <ReactLenis root>
           <body
-            className={`${inter.className} font-semibold antialiased bg-white text-gray-900`}
+            className={`${inter.className} font-semibold antialiased bg-cream text-subheading`}
           >
             <DocumentTitleChanger />
 

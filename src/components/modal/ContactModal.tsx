@@ -17,14 +17,14 @@ export default function ContactModal() {
       onClick={close}
     >
       <div
-        className="bg-pearl p-8 rounded-lg max-w-md w-full mx-4"
+        className="bg-cream p-8 rounded-lg max-w-md w-full mx-4"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-2xl font-bold mb-4 text-charcoal">Get in Touch</h2>
-        <p className="text-slate mb-6">Contact form coming soon...</p>
+        <h2 className="text-2xl font-bold mb-4 text-heading">Get in Touch</h2>
+        <p className="text-subheading/90 mb-6">Contact form coming soon...</p>
         <button
           onClick={close}
-          className="w-full bg-accent text-white py-2 px-4 rounded hover:bg-accent/80 transition-colors"
+          className="w-full bg-accent text-cream py-2 px-4 rounded hover:bg-accent/80 transition-colors"
         >
           Close
         </button>
