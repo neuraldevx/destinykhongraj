@@ -64,6 +64,8 @@
 
   --font-family-gambarino: 'Gambarino-Regular', 'Arial', sans-serif;
   --font-gambarino: 'Gambarino-Regular', 'Arial', sans-serif;
+  /* Heading display font: system sans stack to match prior look */
+  --font-heading-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 @layer base {
@@ -216,6 +218,11 @@
     @apply text-accent font-medium;
   }
 
+}
+
+/* Utility: force headings to the bold sans stack used previously */
+.font-heading-sans {
+  font-family: var(--font-heading-sans);
 }
 
 

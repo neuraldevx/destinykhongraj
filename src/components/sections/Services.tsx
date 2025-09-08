@@ -15,7 +15,6 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 export default function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const headingsRef = useRef<(HTMLHeadingElement | null)[]>([]);
   const splitHeadingsRef = useRef<SplitText[]>([]);
@@ -249,6 +248,7 @@ export default function Services() {
           letter-spacing: -0.02em;
           text-transform: uppercase;
           color: white;
+          font-family: var(--font-heading-sans);
         }
         .service-section .service-description {
           position: absolute;
@@ -275,7 +275,7 @@ export default function Services() {
       <div className="text-center mb-16 px-4">
         <h2 
           ref={headerRef}
-          className={`text-5xl lg:text-7xl font-extrabold text-heading mb-4 tracking-tight`}
+          className={`text-5xl lg:text-7xl font-extrabold text-heading mb-4 tracking-tight font-heading-sans`}
         >
           What We{" "}
           <span className="block text-subheading">
@@ -319,10 +319,8 @@ export default function Services() {
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  const r = (e.currentTarget as HTMLButtonElement).getBoundingClientRect();
-                  setTriggerRect(r);
-                  setActiveIndex(index);
-                }}
+                setActiveIndex(index);
+              }}
                 className="rounded-full bg-[#A68621] hover:bg-[#A7292F] text-cream px-6 py-2 text-base md:text-lg border border-white/30 shadow-lg transition-colors"
               >
                 Showcase
@@ -342,8 +340,7 @@ export default function Services() {
           title={services[activeIndex].title}
           images={services[activeIndex].gallery ?? []}
           tags={services[activeIndex].keywords}
-          sourceRect={triggerRect ?? undefined}
-          onClose={() => { setActiveIndex(null); setTriggerRect(null); }}
+          onClose={() => { setActiveIndex(null); }}
         />
       )}
     </section>

@@ -98,7 +98,6 @@ export default function AboutHorizontal() {
       mm.add("(min-width: 768px)", () => {
         // Distance equals actual scrollable width of wrapper
         const getDistance = () => Math.max(0, (wrapper.scrollWidth || 0) - window.innerWidth);
-        let scrollDistance = getDistance();
 
         // Set up horizontal scroll animation based on real width
         const scrollTween = gsap.to(wrapper, {
@@ -129,7 +128,8 @@ export default function AboutHorizontal() {
 
         // Recalculate after images/fonts load
         const onLoad = () => {
-          scrollDistance = getDistance();
+          // Recalculate layout on load and refresh triggers
+          getDistance();
           ScrollTrigger.refresh();
         };
         window.addEventListener('load', onLoad, { once: true });

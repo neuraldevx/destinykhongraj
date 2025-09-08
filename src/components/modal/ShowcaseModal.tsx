@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,12 +10,10 @@ type ShowcaseModalProps = {
   title: string;
   images: string[];
   onClose: () => void;
-  // Optional: starting rect (from the clicked button) for a zoom-in animation
-  sourceRect?: DOMRect;
   tags?: string[];
 };
 
-export default function ShowcaseModal({ open, title, images, onClose, sourceRect, tags = [] }: ShowcaseModalProps) {
+export default function ShowcaseModal({ open, title, images, onClose, tags = [] }: ShowcaseModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -64,6 +62,16 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
     };
   }, [open]);
 
+  // Close animation helper
+  const closeWithFade = useCallback(() => {
+    const overlay = overlayRef.current;
+    const panel = panelRef.current;
+    if (!overlay || !panel) return onClose();
+    const tl = gsap.timeline({ onComplete: () => { onClose(); } });
+    tl.to(panel, { opacity: 0, scale: 0.98, duration: 0.18, ease: 'power2.in' })
+      .to(overlay, { autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, '<');
+  }, [onClose]);
+
   // ESC key and background click
   useEffect(() => {
     if (!open) return;
@@ -82,7 +90,7 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [open, images.length, lightboxIndex]);
+  }, [open, images.length, lightboxIndex, closeWithFade]);
 
   // Preload a few images for snappier opens
   useEffect(() => {
@@ -101,14 +109,7 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
     gsap.fromTo(items, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, stagger: 0.03, ease: 'power2.out', delay: 0.02 });
   }, [open, images]);
 
-  const closeWithFade = () => {
-    const overlay = overlayRef.current;
-    const panel = panelRef.current;
-    if (!overlay || !panel) return onClose();
-    const tl = gsap.timeline({ onComplete: () => { onClose(); } });
-    tl.to(panel, { opacity: 0, scale: 0.98, duration: 0.18, ease: 'power2.in' })
-      .to(overlay, { autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, '<');
-  };
+  
 
   const content = (
     <div
@@ -154,7 +155,7 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
         <div
           data-showcase-scroll
           className="min-h-0 grow overflow-y-auto overscroll-contain p-4 md:p-6 scroll-pb-12 [scrollbar-gutter:stable]"
-          style={{ WebkitOverflowScrolling: 'touch', overscrollBehaviorY: 'contain', touchAction: 'pan-y' as any }}
+          style={{ WebkitOverflowScrolling: 'touch', overscrollBehaviorY: 'contain', touchAction: 'pan-y' }}
         >
           {images.length ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

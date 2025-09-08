@@ -79,7 +79,7 @@ export default function Hero() {
               className="w-full pointer-events-none mb-6"
             >
               <h2
-                className={`text-6xl md:text-8xl lg:text-9xl font-extrabold text-heading cursor-default tracking-tight leading-none`}
+                className={`text-6xl md:text-8xl lg:text-9xl font-extrabold text-heading cursor-default tracking-tight leading-none font-heading-sans`}
               >
                 Destiny
               </h2>
@@ -98,7 +98,7 @@ export default function Hero() {
               className="w-full pointer-events-none mb-6"
             >
               <h2
-                className={`text-6xl md:text-8xl lg:text-9xl font-extrabold text-heading cursor-default tracking-tight leading-none`}
+                className={`text-6xl md:text-8xl lg:text-9xl font-extrabold text-heading cursor-default tracking-tight leading-none font-heading-sans`}
               >
                 Khongraj
               </h2>
