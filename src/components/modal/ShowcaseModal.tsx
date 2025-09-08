@@ -20,35 +20,24 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
   const panelRef = useRef<HTMLDivElement>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Open / close animation + page scroll locking (simple fade/scale for reliability)
+  // Open / close animation + page scroll locking (switch to simple slide/fade)
   useEffect(() => {
     const overlay = overlayRef.current;
     const panel = panelRef.current;
     if (!overlay || !panel) return;
 
-    // helper: lock/unlock page scroll without causing layout jump
-    let scrollY = 0;
+    // helper: lock/unlock page scroll with overflow hidden on root (more robust across devices)
+    let originalHtmlOverflow = "";
+    let originalBodyOverflow = "";
     const lockScroll = () => {
-      scrollY = window.scrollY || window.pageYOffset;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-      document.body.style.width = "100%";
+      originalHtmlOverflow = document.documentElement.style.overflow;
+      originalBodyOverflow = document.body.style.overflow;
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     };
     const unlockScroll = () => {
-      const y = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
-      if (y) {
-        const offset = parseInt(y || "0", 10) || 0;
-        window.scrollTo(0, -offset);
-      }
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalBodyOverflow;
     };
 
     if (open) {
@@ -57,37 +46,12 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
       const scroller = panel.querySelector('[data-showcase-scroll]') as HTMLElement | null;
       if (scroller) scroller.scrollTop = 0;
 
-      // Animate in: pop from the trigger button's center to modal center
+      // Animate in: simple slide-up + fade for reliability
       const tl = gsap.timeline();
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-
-      // base visible states
       gsap.set(overlay, { autoAlpha: 0 });
-      gsap.set(panel, { opacity: 1 });
-
-      if (sourceRect) {
-        const fromX = sourceRect.left + sourceRect.width / 2 - vw / 2;
-        const fromY = sourceRect.top + sourceRect.height / 2 - vh / 2;
-        // Measure after layout so width is correct
-        const pr = panel.getBoundingClientRect();
-        const scaleFrom = Math.max(0.35, Math.min(0.9, sourceRect.width / Math.max(1, pr.width)));
-        tl.to(overlay, { autoAlpha: 1, duration: 0.22, ease: "power2.out" })
-          .fromTo(
-            panel,
-            { x: fromX, y: fromY, scale: scaleFrom, opacity: 0.001, force3D: true },
-            { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "power3.out", force3D: true },
-            "<"
-          );
-      } else {
-        tl.to(overlay, { autoAlpha: 1, duration: 0.18, ease: "power2.out" })
-          .fromTo(
-            panel,
-            { scale: 0.96, opacity: 0.001, force3D: true },
-            { scale: 1, opacity: 1, duration: 0.28, ease: "power2.out", force3D: true },
-            "<"
-          );
-      }
+      gsap.set(panel, { opacity: 0, y: 20 });
+      tl.to(overlay, { autoAlpha: 1, duration: 0.2, ease: "power2.out" })
+        .to(panel, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" }, "<");
     } else {
       unlockScroll();
       // Safely refresh ScrollTrigger to ensure page can scroll fully
@@ -150,7 +114,7 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
     <div
       ref={overlayRef}
       aria-hidden={!open}
-      className={`fixed inset-0 z-[1000] ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+      className={`fixed inset-0 z-[1000] ${open ? "pointer-events-auto" : "pointer-events-none"} p-3 sm:p-5 md:p-8`}
       onWheel={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
       // Center children reliably regardless of transforms on the panel
@@ -163,14 +127,14 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
         role="dialog"
         aria-modal="true"
         aria-label={`${title} showcase gallery`}
-        className="relative bg-cream/97 backdrop-blur-sm rounded-3xl shadow-2xl border border-[#A68621]/30 overflow-hidden flex flex-col w-[94vw] max-w-[1200px] max-h-[86vh] min-h-[60vh] z-[1010] will-change-transform [contain:layout_paint_size]"
+        className="relative bg-cream/95 backdrop-blur-xl rounded-[28px] md:rounded-[36px] shadow-[0_18px_60px_rgba(0,0,0,0.35)] ring-1 ring-[#A68621]/25 overflow-hidden flex flex-col w-full max-w-[1200px] h-[min(92vh,1000px)] z-[1010] will-change-transform [contain:layout_paint_size]"
         onWheel={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}
       >
-        {/* Header (sticky) */}
-        <div className="sticky top-0 z-10 bg-cream/95 backdrop-blur border-b border-[#A68621]/30">
+        {/* Header */}
+        <div className="z-10 bg-cream/95 backdrop-blur border-b border-[#A68621]/30">
           <div className="flex items-center justify-between p-4 md:p-6">
-            <h3 className="text-heading text-2xl md:text-3xl font-semibold tracking-tight pr-4">{title} — Showcase</h3>
+            <h3 className="text-heading text-2xl md:text-3xl font-extrabold tracking-tight pr-4">{title} — Showcase</h3>
             <div className="flex items-center gap-3">
               <button onClick={closeWithFade} className="rounded-full px-4 py-2 border border-[#A68621]/50 text-subheading hover:bg-[#A68621]/10 transition-colors">Close</button>
             </div>
@@ -186,8 +150,12 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
           ) : null}
         </div>
 
-        {/* Masonry grid via CSS columns for simpler, flexible layout */}
-        <div data-showcase-scroll className="flex-1 overflow-y-auto overscroll-contain p-4 md:p-6 [scrollbar-gutter:stable]">
+        {/* Scrollable content area (must have min-h-0 in flex layouts) */}
+        <div
+          data-showcase-scroll
+          className="min-h-0 grow overflow-y-auto overscroll-contain p-4 md:p-6 scroll-pb-12 [scrollbar-gutter:stable]"
+          style={{ WebkitOverflowScrolling: 'touch', overscrollBehaviorY: 'contain', touchAction: 'pan-y' as any }}
+        >
           {images.length ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {images.map((src, idx) => (
@@ -195,16 +163,27 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
                   key={idx}
                   type="button"
                   onClick={() => setLightboxIndex(idx)}
-                  className="showcase-item block w-full group text-left rounded-xl overflow-hidden border border-[#A68621]/20 bg-white shadow-sm hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-[#A68621]/50"
+                  className="showcase-item block w-full group text-left rounded-2xl overflow-hidden border border-[#A68621]/20 bg-white shadow-sm hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-[#A68621]/50"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt="Showcase image" loading="lazy" decoding="async" className="w-full h-auto block transform-gpu transition-transform duration-300 ease-out will-change-transform group-hover:scale-[1.03]" />
+                  {/* Reserve space so the container can scroll even before images load */}
+                  <div className="relative w-full aspect-[4/3] bg-white">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={src}
+                      alt="Showcase image"
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-contain transform-gpu transition-transform duration-300 ease-out will-change-transform group-hover:scale-[1.02]"
+                    />
+                  </div>
                 </button>
               ))}
             </div>
           ) : (
             <div className="text-center text-subheading/70">No images yet — coming soon.</div>
           )}
+          {/* Fade masks to imply scrollable content */}
+          <div className="pointer-events-none fixed inset-x-0" style={{ top: 'env(safe-area-inset-top, 0)' }} />
         </div>
 
         {/* Lightbox */}
@@ -212,7 +191,7 @@ export default function ShowcaseModal({ open, title, images, onClose, sourceRect
           <div className="absolute inset-0 z-20 bg-black/70 flex items-center justify-center p-4" onClick={() => setLightboxIndex(null)}>
             <div className="relative max-w-[92vw] max-h-[85vh] will-change-transform" onClick={(e) => e.stopPropagation()}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={images[lightboxIndex]} alt="Expanded image" className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-lg" loading="eager" fetchpriority="high" decoding="async" />
+              <img src={images[lightboxIndex]} alt="Expanded image" className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-lg" loading="eager" fetchPriority="high" decoding="async" />
               <button aria-label="Previous" onClick={() => setLightboxIndex((i) => (i === null ? 0 : (i - 1 + images.length) % images.length))} className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-cream/90 text-subheading rounded-full shadow border border-[#A68621]/40">‹</button>
               <button aria-label="Next" onClick={() => setLightboxIndex((i) => (i === null ? 0 : (i + 1) % images.length))} className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-cream/90 text-subheading rounded-full shadow border border-[#A68621]/40">›</button>
               <button aria-label="Close" onClick={() => setLightboxIndex(null)} className="absolute -top-3 -right-3 p-2 bg-cream text-subheading rounded-full shadow border border-[#A68621]/40">✕</button>

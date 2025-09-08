@@ -21,6 +21,7 @@ export default function Services() {
   const splitHeadingsRef = useRef<SplitText[]>([]);
   const headerRef = useRef<HTMLHeadingElement>(null);
   const subHeaderRef = useRef<HTMLParagraphElement>(null);
+  const showcaseEnabled = new Set(["PUBLICATIONS", "FASHION STYLING"]);
 
   // Preload background images so ScrollTrigger can measure correctly, then safe refresh
   useGSAP(() => {
@@ -242,7 +243,7 @@ export default function Services() {
           position: relative;
           z-index: 10;
           font-size: clamp(3rem, 12vw, 8rem);
-          font-weight: 700;
+          font-weight: 800;
           text-align: center;
           line-height: 0.9;
           letter-spacing: -0.02em;
@@ -274,7 +275,7 @@ export default function Services() {
       <div className="text-center mb-16 px-4">
         <h2 
           ref={headerRef}
-          className={`text-5xl lg:text-7xl font-light text-heading mb-4 tracking-tight`}
+          className={`text-5xl lg:text-7xl font-extrabold text-heading mb-4 tracking-tight`}
         >
           What We{" "}
           <span className="block text-subheading">
@@ -311,21 +312,23 @@ export default function Services() {
           >
             {service.title}
           </h2>
-          {/* Showcase button */}
-          <div className="showcase-button">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                const r = (e.currentTarget as HTMLButtonElement).getBoundingClientRect();
-                setTriggerRect(r);
-                setActiveIndex(index);
-              }}
-              className="rounded-full bg-[#A68621] hover:bg-[#A7292F] text-cream px-6 py-2 text-base md:text-lg border border-white/30 shadow-lg transition-colors"
-            >
-              Showcase
-            </button>
-          </div>
+          {/* Showcase button (only for Publications & Fashion Styling) */}
+          {showcaseEnabled.has(service.title) && (
+            <div className="showcase-button">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const r = (e.currentTarget as HTMLButtonElement).getBoundingClientRect();
+                  setTriggerRect(r);
+                  setActiveIndex(index);
+                }}
+                className="rounded-full bg-[#A68621] hover:bg-[#A7292F] text-cream px-6 py-2 text-base md:text-lg border border-white/30 shadow-lg transition-colors"
+              >
+                Showcase
+              </button>
+            </div>
+          )}
           <div className="service-description">
             <p>{service.description}</p>
           </div>
