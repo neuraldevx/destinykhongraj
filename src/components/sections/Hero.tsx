@@ -119,7 +119,7 @@ export default function Hero() {
                 }}
                 className={`text-[clamp(18px,1.4vw,28px)] font-medium leading-[1.2] text-center md:text-left text-subheading`}
               >
-                Visual Architect & Digital Dreamer
+                Creative Strategist
               </motion.p>
             </div>
 
@@ -155,7 +155,7 @@ export default function Hero() {
                 }}
                 className={`text-[clamp(18px,1.4vw,28px)] font-normal -mt-1 leading-[1.2] text-center md:text-left text-subheading`}
               >
-                Crafting stories that resonate across universes
+                Marketing, Branding, and More!
               </motion.p>
             </div>
           </div>
