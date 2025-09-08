@@ -201,15 +201,19 @@ export default function Footer() {
             <span className="bg-gradient-to-r from-[#A68621] to-[#A7292F] bg-clip-text text-transparent">together!</span>
           </h2>
 
-          <button className={`footer-button bg-gradient-to-r from-[#A68621] to-[#A7292F] hover:from-[#A7292F] hover:to-[#A68621] text-cream px-10 py-4 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-2xl border border-[#A68621]/60`}>
+          <a
+            href="mailto:destinykhongraj1@gmail.com"
+            aria-label="Email Destiny at destinykhongraj1@gmail.com"
+            className={`footer-button inline-block bg-gradient-to-r from-[#A68621] to-[#A7292F] hover:from-[#A7292F] hover:to-[#A68621] text-cream px-10 py-4 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-2xl border border-[#A68621]/60`}
+          >
             Get in Touch
-          </button>
+          </a>
         </div>
 
         {/* Footer navigation */}
         <div className="grid grid-cols-3 gap-8 text-center md:text-left pt-16 border-t border-[#A68621]/30 max-w-7xl mx-auto">
           <div className="space-y-3">
-            <a href="#" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
+            <a href="https://www.instagram.com/destinykhongraj/" target="_blank" rel="noopener noreferrer" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               Instagram
             </a>
             <a href="#" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
@@ -222,7 +226,7 @@ export default function Footer() {
           </div>
           
           <div className="space-y-3 text-right">
-            <a href="#" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
+            <a href="https://www.linkedin.com/in/destiny-khongraj-5050781a4/" target="_blank" rel="noopener noreferrer" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               LinkedIn
             </a>
             <a href="#" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>

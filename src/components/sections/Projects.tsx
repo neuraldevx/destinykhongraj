@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "@/data/projects";
-import Image from "next/image";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -87,7 +86,8 @@ export default function Projects() {
           flex-wrap: wrap;
           align-items: center;
           gap: 2rem;
-          height: 100vh;
+          height: auto;
+          min-height: 50vh;
           border-top: dashed 2px #A68621; /* gold */
         }
         
@@ -100,28 +100,15 @@ export default function Projects() {
           flex-direction: row-reverse;
         }
         
-        .features__image {
-          flex: 1 1 40%;
-          position: relative;
-        }
-        
-        .features__card {
-          border-radius: 8px;
-          overflow: hidden;
-          position: relative;
-          aspect-ratio: 1 / 1;
-        }
-        
-        .features__img {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          object-fit: cover;
-          display: block;
-        }
-        
         .features__content {
-          flex: 1 1 55%;
+          flex: 1 1 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          margin-inline: auto;
+          max-width: 900px;
         }
         
         .features__title {
@@ -165,7 +152,7 @@ export default function Projects() {
       `}</style>
       
       <div className="content__hero">
-        <h1 className="content__heading gs_reveal">
+        <h1 className="content__heading gs_reveal font-heading-sans">
           Featured Work & Creative Vision
         </h1>
       </div>
@@ -180,17 +167,6 @@ export default function Projects() {
               index % 2 === 0 ? 'gs_reveal_fromLeft' : 'gs_reveal_fromRight'
             }`}
           >
-            <div className="features__image">
-              <div className="features__card">
-                <Image
-                  className="features__img"
-                  src={project.imageUrl}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                />
-              </div>
-            </div>
             <div className="features__content">
               <h2 className="features__title gs_reveal">{project.title}</h2>
               <p 
