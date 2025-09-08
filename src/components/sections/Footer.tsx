@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { inter, playfair_display } from "@/fonts";
+// Use global Gambarino font from globals.css
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -186,22 +186,22 @@ export default function Footer() {
       <footer className="relative space-y-16 px-6 lg:px-12">
         {/* Header with location and time */}
         <div className="flex justify-between items-start mb-16 max-w-7xl mx-auto">
-          <p className={`location-time ${inter.className} font-medium text-lg text-subheading/80`}>
+          <p className={`location-time font-medium text-lg text-subheading/80`}>
             Los Angeles, CA
           </p>
-          <div className={`location-time ${inter.className} text-heading font-medium text-lg`}>
+          <div className={`location-time text-heading font-medium text-lg`}>
             {currentTime}
           </div>
         </div>
 
         {/* Main content */}
         <div className="text-center py-16 max-w-7xl mx-auto">
-          <h2 className={`footer-title ${inter.className} text-5xl md:text-7xl font-light text-heading mb-12 leading-tight tracking-tight`}>
+          <h2 className={`footer-title text-5xl md:text-7xl font-light text-heading mb-12 leading-tight tracking-tight`}>
             Let&apos;s work{" "}
             <span className="bg-gradient-to-r from-[#A68621] to-[#A7292F] bg-clip-text text-transparent">together!</span>
           </h2>
 
-          <button className={`footer-button ${inter.className} bg-gradient-to-r from-[#A68621] to-[#A7292F] hover:from-[#A7292F] hover:to-[#A68621] text-cream px-10 py-4 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-2xl border border-[#A68621]/60`}>
+          <button className={`footer-button bg-gradient-to-r from-[#A68621] to-[#A7292F] hover:from-[#A7292F] hover:to-[#A68621] text-cream px-10 py-4 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-2xl border border-[#A68621]/60`}>
             Get in Touch
           </button>
         </div>
@@ -209,23 +209,23 @@ export default function Footer() {
         {/* Footer navigation */}
         <div className="grid grid-cols-3 gap-8 text-center md:text-left pt-16 border-t border-[#A68621]/30 max-w-7xl mx-auto">
           <div className="space-y-3">
-            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
+            <a href="#" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               Instagram
             </a>
-            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
+            <a href="#" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               YouTube
             </a>
           </div>
           
           <div className="flex justify-center items-center">
-            <p className={`${inter.className} font-medium text-heading text-lg`}>©2025</p>
+            <p className={`font-medium text-heading text-lg`}>©2025</p>
           </div>
           
           <div className="space-y-3 text-right">
-            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
+            <a href="#" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               LinkedIn
             </a>
-            <a href="#" className={`social-link ${playfair_display.className} block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
+            <a href="#" className={`social-link block font-medium text-subheading/80 hover:text-heading transition-colors text-lg`}>
               TikTok
             </a>
           </div>

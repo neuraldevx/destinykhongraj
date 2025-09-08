@@ -8,6 +8,8 @@ type Service = {
   position?: string;
   // fit: 'cover' keeps full-bleed; 'contain' avoids cropping (may letterbox)
   fit?: 'cover' | 'contain';
+  // gallery images for the Pinterest-like showcase
+  gallery?: string[];
 };
 
 export const services: Service[] = [
@@ -19,6 +21,16 @@ export const services: Service[] = [
     imageUrl: "/images/services/image-1.png",
     position: '50% 50%', // Move focus higher to center face
     fit: 'contain', // Avoid cropping
+    gallery: [
+      "/images/hero/image-1.png",
+      "/images/projects/project-1.jpg",
+      "/images/hero/image-2.png",
+      "/images/services/image-1.png",
+      "/images/hero/image-3.png",
+      "/images/projects/project-2.jpg",
+      "/images/hero/image-4.png",
+      "/images/projects/project-4.jpg",
+    ],
   },
   {
     title: "MARKETING AND CONTENT STRATEGY",
@@ -28,6 +40,15 @@ export const services: Service[] = [
     imageUrl: "/images/services/image-2.png",
     position: '50% 50%', // Move focus higher to center face
     fit: 'cover', // Avoid cropping
+    gallery: [
+      "/images/hero/image-5.png",
+      "/images/projects/project-2.jpg",
+      "/images/hero/image-6.png",
+      "/images/services/image-2.png",
+      "/images/hero/image-7.png",
+      "/images/projects/project-4.jpg",
+      "/images/hero/image-8.png",
+    ],
   },
   {
     title: "E-COMMERCE",
@@ -36,6 +57,13 @@ export const services: Service[] = [
     keywords: ["Shopify", "Amazon", "Product Graphics", "Email Flows"],
     imageUrl: "/images/services/image-3.png",
     position: '90% 90%', // Move focus higher to center face
+    gallery: [
+      "/images/projects/project-1.jpg",
+      "/images/services/image-3.png",
+      "/images/hero/image-2.png",
+      "/images/hero/image-9.png",
+      "/images/projects/project-4.jpg",
+    ],
   },
   {
     title: "PUBLICATIONS",
@@ -45,6 +73,13 @@ export const services: Service[] = [
     imageUrl: "/images/services/image-4.png",
     position: '90% 90%', // Move focus higher to center face
     fit: 'cover', // Avoid cropping
+    gallery: [
+      "/images/services/image-4.png",
+      "/images/hero/image-3.png",
+      "/images/projects/project-2.jpg",
+      "/images/hero/image-1.png",
+      "/images/hero/image-7.png",
+    ],
   },
   {
     title: "FASHION STYLING",
@@ -53,5 +88,12 @@ export const services: Service[] = [
     keywords: ["Styling", "Editorial", "Retail", "Trends"],
     imageUrl: "/images/services/image-5.png",
     position: '15% 15%', // Move focus higher to center face
+    gallery: [
+      "/images/services/image-5.png",
+      "/images/hero/image-4.png",
+      "/images/projects/project-1.jpg",
+      "/images/hero/image-6.png",
+      "/images/hero/image-8.png",
+    ],
   },
 ];

@@ -1,23 +1,35 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/services";
+import ShowcaseModal from "@/components/modal/ShowcaseModal";
 import SplitText from "split-type";
-import { inter, playfair_display } from "@/fonts";
+// Use global Gambarino font from globals.css for consistent typography
 
 //Register GSAP plugins
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const headingsRef = useRef<(HTMLHeadingElement | null)[]>([]);
   const splitHeadingsRef = useRef<SplitText[]>([]);
   const headerRef = useRef<HTMLHeadingElement>(null);
   const subHeaderRef = useRef<HTMLParagraphElement>(null);
+
+  // Preload background images so ScrollTrigger can measure correctly, then safe refresh
+  useGSAP(() => {
+    const urls = services.map(s => s.imageUrl).filter(Boolean) as string[];
+    if (!urls.length) return;
+    let pending = urls.length;
+    const done = () => { if (--pending <= 0) { try { ScrollTrigger.refresh(true); } catch { /* noop */ } } };
+    urls.forEach(src => { const img = new Image(); img.onload = done; img.onerror = done; img.src = src; });
+  }, { scope: containerRef });
 
   useGSAP(() => {
     const sections = sectionsRef.current;
@@ -103,7 +115,8 @@ export default function Services() {
       //Set initial states
       gsap.set(chars, { y: 100, opacity: 0 });
       // Start at 1 to avoid any initial zoom that crops the image
-      gsap.set(backgroundEl, { scale: 1 });
+      // Use transform-based parallax (more performant than background-attachment: fixed)
+      gsap.set(backgroundEl, { scale: 1.12 });
 
       //Create timeline for this section
       ScrollTrigger.create({
@@ -165,7 +178,7 @@ export default function Services() {
           }
       });
 
-      //Background parallax effect
+      // Background parallax effect via transforms (avoid background-attachment: fixed issues on iOS)
       gsap.to(backgroundEl, {
         scale: 1,
         ease: "none",
@@ -177,6 +190,12 @@ export default function Services() {
         }
       });
     });
+
+    // After images/fonts load, safely refresh ScrollTrigger measurements
+    const safeRefresh = () => {
+      try { ScrollTrigger.refresh(true); } catch { /* ignore */ }
+    };
+    window.addEventListener('load', safeRefresh, { once: true });
 
   }, { scope: containerRef });
 
@@ -203,7 +222,7 @@ export default function Services() {
           height: 100%;
           background-size: cover;
           background-position: center;
-          background-attachment: fixed;
+          /* Avoid background-attachment: fixed for better mobile scroll behavior */
         }
         .service-section .bg::before {
           content: '';
@@ -242,22 +261,29 @@ export default function Services() {
           z-index: 10;
           color: white;
         }
+        .showcase-button {
+          position: absolute;
+          top: 10%;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 12;
+        }
       `}</style>
       
       {/* Section Header */}
       <div className="text-center mb-16 px-4">
         <h2 
           ref={headerRef}
-          className={`${inter.className} text-5xl lg:text-7xl font-light text-heading mb-4 tracking-tight overflow-hidden`}
+          className={`text-5xl lg:text-7xl font-light text-heading mb-4 tracking-tight`}
         >
           What We{" "}
-          <span className="block bg-gradient-to-r from-[#A68621] via-[#A7292F] to-[#A68621] bg-clip-text text-transparent">
+          <span className="block text-subheading">
             Create Together
           </span>
         </h2>
         <p 
           ref={subHeaderRef}
-          className={`${playfair_display.className} text-xl text-subheading/80 max-w-2xl mx-auto leading-relaxed overflow-hidden`}
+          className={`text-xl text-subheading/80 max-w-2xl mx-auto leading-relaxed`}
         >
           Where vision meets execution in perfect harmony
         </p>
@@ -285,11 +311,38 @@ export default function Services() {
           >
             {service.title}
           </h2>
+          {/* Showcase button */}
+          <div className="showcase-button">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                const r = (e.currentTarget as HTMLButtonElement).getBoundingClientRect();
+                setTriggerRect(r);
+                setActiveIndex(index);
+              }}
+              className="rounded-full bg-[#A68621] hover:bg-[#A7292F] text-cream px-6 py-2 text-base md:text-lg border border-white/30 shadow-lg transition-colors"
+            >
+              Showcase
+            </button>
+          </div>
           <div className="service-description">
             <p>{service.description}</p>
           </div>
         </div>
       ))}
+
+      {/* Modal */}
+      {activeIndex !== null && (
+        <ShowcaseModal
+          open={activeIndex !== null}
+          title={services[activeIndex].title}
+          images={services[activeIndex].gallery ?? []}
+          tags={services[activeIndex].keywords}
+          sourceRect={triggerRect ?? undefined}
+          onClose={() => { setActiveIndex(null); setTriggerRect(null); }}
+        />
+      )}
     </section>
   );
 }

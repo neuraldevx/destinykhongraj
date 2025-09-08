@@ -45,9 +45,18 @@ export default function Home() {
       });
     });
 
+    // Extra safe refresh points for dynamic content/imagery
+    const onLoad = () => { try { ScrollTrigger.refresh(true); } catch { /* noop */ } };
+    const rAF = requestAnimationFrame(() => { try { ScrollTrigger.refresh(true); } catch { /* noop */ } });
+    const t = setTimeout(() => { try { ScrollTrigger.refresh(true); } catch { /* noop */ } }, 800);
+    window.addEventListener('load', onLoad, { once: true });
+
     // Cleanup
     return () => {
       window.removeEventListener('heroAnimationComplete', handleHeroComplete);
+      window.removeEventListener('load', onLoad);
+      cancelAnimationFrame(rAF);
+      clearTimeout(t);
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);

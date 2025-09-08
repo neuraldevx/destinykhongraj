@@ -110,7 +110,8 @@ export default function AboutHorizontal() {
         const st = ScrollTrigger.create({
           trigger: container,
           start: "top top",
-          end: () => `+=${Math.round(getDistance() * 1.8)}`,
+          // Provide ample vertical travel to ensure bottom of page remains reachable
+          end: () => `+=${Math.round(getDistance() + container.offsetHeight + window.innerHeight * 0.5)}`,
           scrub: 1.1,
           pin: true,
           anticipatePin: 1,

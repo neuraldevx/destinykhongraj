@@ -60,7 +60,7 @@ export default function Projects() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="content bg-cream px-4 py-16 lg:py-24">
+    <section ref={containerRef} className="content bg-cream px-4 py-16 lg:py-20">
       <style jsx>{`
         .content__hero {
           height: 40vh;
@@ -143,9 +143,7 @@ export default function Projects() {
           will-change: transform, opacity;
         }
         
-        .spacer {
-          height: 100vh;
-        }
+        /* remove artificial spacer to reduce gap before footer */
         
         @media (max-width: 768px) {
           .features__item {
@@ -214,7 +212,7 @@ export default function Projects() {
         ))}
       </div>
       
-      <div className="spacer"></div>
+      {/* Spacer removed to tighten layout before footer */}
     </section>
   );
 }

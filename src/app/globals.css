@@ -2,9 +2,14 @@
 
 @font-face {
   font-family: 'Gambarino-Regular';
-  src: url('/fonts/fonts/Gambarino-Regular.woff2') format('woff2'),
-       url('/fonts/fonts/Gambarino-Regular.woff') format('woff'),
-       url('/fonts/fonts/Gambarino-Regular.ttf') format('truetype');
+  src:
+    url('/Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.woff2') format('woff2'),
+    url('/Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.woff') format('woff'),
+    url('/Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.ttf') format('truetype'),
+    /* Fallback to previous location */
+    url('/fonts/fonts/Gambarino-Regular.woff2') format('woff2'),
+    url('/fonts/fonts/Gambarino-Regular.woff') format('woff'),
+    url('/fonts/fonts/Gambarino-Regular.ttf') format('truetype');
   font-weight: 400;
   font-display: swap;
   font-style: normal;
